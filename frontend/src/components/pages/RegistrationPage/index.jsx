@@ -1,30 +1,40 @@
 // Components
 import { Button } from '../../structure/Button'
 import { Header } from '../../structure/Header'
-import { FormPanel } from '../../structure/FormPanel'
+import { Input } from '../../structure/Input/index.'
+import { SidePanel } from '../../structure/SidePanel'
+import { ButtonsRow } from './components/ButtonsRow'
+
+// Hooks
+import { useRegistratinPage } from './hooks/useRegistrationPage'
 
 // Styles
 import styles from './styles.module.css'
-import { useRegistratinPage } from './hooks/useRegistrationPage'
-import { Input } from '../../structure/Input/index.'
 
 export default function RegistrationPage() {
   // Hooks
-  const { sidePanelRef, isVisible, handleButtonCLick } = useRegistratinPage()
+  const { sidePanelRef, isVisible, handleButtonClick } = useRegistratinPage()
 
   return (
     <div className={styles.container}>
-      <Header label="Seja bem vindo à página de cadastros!" />
+      <Header text="Seja bem vindo à página de cadastros!" />
 
-      <div className={styles['btn-wrapper']}>
-        <Button variant="default" label={'Novo produto'} onClick={handleButtonCLick} />
-        <Button variant="default" label={'Novo usuário'} onClick={handleButtonCLick} />
-        <Button variant="default" label={'Nova compra'} onClick={handleButtonCLick} />
-      </div>
+      <ButtonsRow onClick={handleButtonClick} />
 
-      <Input title="teste" type="text" label="teste" placeholder="testando" />
+      <SidePanel visible={isVisible} ref={sidePanelRef}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          <Header text="Teste de Painel" />
+          <Input title="teste" fitWidth type="text" label="teste" placeholder="testando" />
+          <Input title="teste" fitWidth type="text" label="teste" placeholder="testando" />
+          <Input title="teste" fitWidth type="text" label="teste" placeholder="testando" />
+          <Input title="teste" fitWidth type="text" label="teste" placeholder="testando" />
 
-      <FormPanel visible={isVisible} ref={sidePanelRef} />
+          <div className={styles['btn-wrapper']}>
+            <Button variant="confirm" fitWidth label="Confirmar" onClick={handleButtonClick} />
+            <Button variant="danger" fitWidth label="Cancelar" onClick={handleButtonClick} />
+          </div>
+        </div>
+      </SidePanel>
     </div>
   )
 }

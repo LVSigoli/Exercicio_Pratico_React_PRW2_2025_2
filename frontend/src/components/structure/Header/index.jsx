@@ -1,3 +1,3 @@
-export const Header = ({ label }) => {
-  return <h1>{label}</h1>
+export const Header = ({ text }) => {
+  return <h1>{text}</h1>
 }

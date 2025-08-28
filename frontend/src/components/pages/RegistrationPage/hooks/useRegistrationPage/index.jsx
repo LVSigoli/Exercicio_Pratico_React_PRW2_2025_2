@@ -13,7 +13,7 @@ export function useRegistratinPage() {
   useEffect(() => {
     function handleClickOutside(event) {
       if (sidePanelRef.current && !sidePanelRef.current.contains(event.target)) {
-        setIsVisible(false)
+        toggleVisivible()
       }
     }
 
@@ -25,9 +25,13 @@ export function useRegistratinPage() {
   }, [])
 
   // Functions
-  function handleButtonCLick() {
-    setIsVisible(true)
+  function toggleVisivible() {
+    setIsVisible(!isVisible)
   }
 
-  return { sidePanelRef, isVisible, handleButtonCLick }
+  function handleButtonClick() {
+    toggleVisivible()
+  }
+
+  return { sidePanelRef, isVisible, handleButtonClick }
 }
