@@ -1,1 +1,5 @@
-/* Insira aqui os estilos globais do website */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

@@ -1,13 +1,9 @@
 import './App.css'
+import { RegistrationPage } from './components/pages/RegistrationPage'
+import { Button } from './components/structure/Button'
 
 function App() {
-  return (
-    <>
-      <h1>Seja bem vindo!</h1>
-
-      <p>Desenvolva seu website usando React!</p>
-    </>
-  )
+  return <RegistrationPage />
 }
 
 export default App

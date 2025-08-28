@@ -1,0 +1,68 @@
+.button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.06s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  text-decoration: none;
+  user-select: none;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-b1);
+}
+
+.button:hover,
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.button:active,
+.btn:active {
+  transform: translateY(0);
+}
+
+.default,
+.btn--default {
+  background: var(--btn-default-bg);
+  color: var(--btn-default-text);
+}
+.default:hover,
+.btn--default:hover {
+  background: var(--btn-default-bg-hover);
+}
+
+.confirm,
+.btn--confirm {
+  background: var(--btn-confirm-bg);
+  color: var(--btn-default-text);
+}
+.confirm:hover,
+.btn--confirm:hover {
+  background: var(--btn-confirm-bg-hover);
+}
+
+.danger,
+.btn--danger {
+  background: var(--btn-danger-bg);
+  color: var(--btn-danger-text);
+}
+.danger:hover,
+.btn--danger:hover {
+  background: var(--btn-danger-bg-hover);
+}
+
+.button[disabled],
+.btn[disabled],
+.button:disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
