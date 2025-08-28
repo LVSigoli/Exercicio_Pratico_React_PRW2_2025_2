@@ -66,3 +66,7 @@
   transform: none;
   box-shadow: var(--shadow-sm);
 }
+
+.fitWidth {
+  width: 100%;
+}

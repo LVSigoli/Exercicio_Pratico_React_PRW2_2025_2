@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.25rem;
+  align-items: flex-start;
+}
+
+.input-name {
+  font-size: 1.25rem;
+
+  color: var(--color-text-secondary);
+}
+
+.input {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  border-color: none;
+}
+
+.input::placeholder {
+  color: rgba(229, 231, 235, 0.6);
+}
+
+.fitWidth {
+  width: 100%;
+}
