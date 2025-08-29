@@ -2,8 +2,11 @@
 import { Table } from '../../structure/Table'
 import { Header } from '../../structure/Header'
 import { useUsers } from '../../../hooks/useUsers'
-import { SidePanel } from '../../structure/SidePanel'
 import { ButtonsRow } from './components/ButtonsRow'
+import { SidePanel } from '../../structure/SidePanel'
+
+// Utils
+import { USER_COLUMNS } from './utils'
 
 // Hooks
 import { useRegistratinPage } from './hooks/useRegistrationPage'
@@ -13,10 +16,18 @@ import styles from './styles.module.css'
 
 export default function RegistrationPage() {
   // Hooks
-  const { sidePanelRef, isVisible, handleButtonClick } = useRegistratinPage()
-  const { users, loading } = useUsers()
-
-  console.log(users)
+  const {
+    isVisible,
+    sidePanelRef,
+    togglePanel,
+    handleButtonClick,
+  } = useRegistratinPage()
+  const {
+    users,
+    loading,
+    handleRowClick,
+    handleDeleteUser,
+  } = useUsers({ togglePanel })
 
   return (
     <div className={styles.container}>
@@ -24,16 +35,17 @@ export default function RegistrationPage() {
 
       <ButtonsRow onClick={handleButtonClick} />
 
-      <Table
-        columns={['Nome', 'Idade', 'Cidade']}
-        content={[
-          ['João', 25, 'São Paulo'],
-          ['Maria', 30, 'Rio de Janeiro'],
-          ['Pedro', 22, 'Belo Horizonte'],
-        ]}
-      />
+      <div className={styles.content}>
+        <Table
+          title="Clientes"
+          content={users}
+          columns={USER_COLUMNS}
+          onRowClick={handleRowClick}
+          onDeleteClick={handleDeleteUser}
+        />
+      </div>
 
-      <SidePanel visible={isVisible} ref={sidePanelRef}></SidePanel>
+      <SidePanel ref={sidePanelRef} visible={isVisible} />
     </div>
   )
 }

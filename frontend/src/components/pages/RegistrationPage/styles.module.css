@@ -11,8 +11,12 @@
 }
 
 .content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  max-width: 50rem;
+  width: 100%;
+
+  display: flex;
+  padding: 1rem;
+  align-items: flex-start;
 }
 
 .btn-wrapper {

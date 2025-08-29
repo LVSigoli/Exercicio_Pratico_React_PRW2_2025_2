@@ -1,19 +1,43 @@
+// Components
 import { Button } from '../../../../structure/Button'
+
+// Utils
+import { formatProducts } from './utils/formatProducts'
 
 // Styles
 import styles from './styles.module.css'
 
-export const TableContent = ({ content, onRowClick, onDeleteClick }) => {
-  return content.map((row, rowIndex) => (
-    <tr className={styles.tr} key={rowIndex} onClick={() => onRowClick(row)}>
-      {row.map((cell, cellIndex) => (
-        <td className={styles.td} key={cellIndex}>
-          {cell}
-        </td>
-      ))}
+export const TableContent = ({
+  content,
+  onRowClick,
+  onDeleteClick,
+}) => {
+  const lastIndex = content.length - 1
+
+  function verifyLastIndex(index) {
+    return index !== lastIndex ? styles['tr-border'] : ''
+  }
+
+  return content.map((item, index) => (
+    <tr
+      key={item.id}
+      className={`${styles.tr} ${verifyLastIndex(index)}`}
+      onClick={() => onRowClick(item)}
+    >
+      <td className={styles.td}>
+        <p>{item.nome}</p>
+      </td>
 
       <td className={styles.td}>
-        <Button variant="danger" label="Remover" onClick={onDeleteClick} />
+        <p>{formatProducts(item.produtos)}</p>
+      </td>
+
+      <td className={styles['btn-td']}>
+        <Button
+          label="Remover"
+          variant="danger"
+          onClick={e => onDeleteClick(item.id)}
+        />
       </td>
     </tr>
   ))

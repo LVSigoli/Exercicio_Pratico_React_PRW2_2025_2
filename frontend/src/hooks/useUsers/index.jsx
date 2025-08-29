@@ -2,11 +2,14 @@
 import { useEffect, useState } from 'react'
 
 // Serivices
-import { getUsers } from '../../services/api/user'
+import {
+  getUsers,
+  removeUser,
+} from '../../services/api/user'
 
-export function useUsers() {
+export function useUsers({ togglePanel }) {
   // States
-  const [users, setUsers] = useState()
+  const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
 
   // Effects
@@ -30,5 +33,28 @@ export function useUsers() {
     }
   }
 
-  return { users, loading }
+  async function handleDeleteUser(userId) {
+    try {
+      setLoading(true)
+      await removeUser(userId)
+
+      await fetchUsers()
+    } catch (error) {
+      //TODO
+      //showToast({variant = 'error', message: "Erro ao remover usuários"})
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  function handleRowClick() {
+    togglePanel()
+  }
+
+  return {
+    users,
+    loading,
+    handleRowClick,
+    handleDeleteUser,
+  }
 }

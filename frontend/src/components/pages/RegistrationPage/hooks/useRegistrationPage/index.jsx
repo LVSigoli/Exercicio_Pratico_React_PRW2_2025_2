@@ -26,13 +26,13 @@ export function useRegistratinPage() {
   }, [])
 
   // Functions
-  function toggleVisivible() {
+  function togglePanel() {
     setIsVisible(prev => !prev)
   }
 
   function handleButtonClick() {
-    toggleVisivible()
+    togglePanel()
   }
 
-  return { sidePanelRef, isVisible, handleButtonClick }
+  return { sidePanelRef, isVisible, togglePanel, handleButtonClick }
 }
