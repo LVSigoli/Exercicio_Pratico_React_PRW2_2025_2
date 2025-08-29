@@ -1,1 +1,1 @@
-export const USER_COLUMNS = ['Nome', 'Produtos']
+export const USER_COLUMNS = ['Nome', 'Produtos', '']
