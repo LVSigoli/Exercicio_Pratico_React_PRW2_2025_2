@@ -1,6 +1,5 @@
 // Components
 import { Table } from '../../structure/Table'
-import { Header } from '../../structure/Header'
 import { useUsers } from '../../../hooks/useUsers'
 import { ButtonsRow } from './components/ButtonsRow'
 import { SidePanel } from '../../structure/SidePanel'
