@@ -1,0 +1,23 @@
+.th {
+  padding: 1rem;
+  font-weight: 600;
+  font-size: var(--font-size-b1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.tr {
+  display: grid;
+
+  grid-template-columns: repeat(4, 12rem);
+}
+
+.td {
+  padding: 1rem;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-b1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}

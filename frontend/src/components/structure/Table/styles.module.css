@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+
+  column-gap: 0.25rem;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.table {
+  width: fit-content;
+
+  padding: 1rem 0.5rem;
+
+  border: 0.5px solid #666;
+  background-color: var(--color-bg);
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+
+  font-family: var(--font-family-sans);
+}
+
+.thead {
+  display: grid;
+
+  grid-template-columns: repeat(3, 12rem);
+}

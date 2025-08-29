@@ -1,7 +1,7 @@
 // Components
-import { Button } from '../../structure/Button'
+import { Table } from '../../structure/Table'
 import { Header } from '../../structure/Header'
-import { Input } from '../../structure/Input/index.'
+import { useUsers } from '../../../hooks/useUsers'
 import { SidePanel } from '../../structure/SidePanel'
 import { ButtonsRow } from './components/ButtonsRow'
 
@@ -14,6 +14,9 @@ import styles from './styles.module.css'
 export default function RegistrationPage() {
   // Hooks
   const { sidePanelRef, isVisible, handleButtonClick } = useRegistratinPage()
+  const { users, loading } = useUsers()
+
+  console.log(users)
 
   return (
     <div className={styles.container}>
@@ -21,20 +24,16 @@ export default function RegistrationPage() {
 
       <ButtonsRow onClick={handleButtonClick} />
 
-      <SidePanel visible={isVisible} ref={sidePanelRef}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          <Header text="Teste de Painel" />
-          <Input title="teste" fitWidth type="text" label="teste" placeholder="testando" />
-          <Input title="teste" fitWidth type="text" label="teste" placeholder="testando" />
-          <Input title="teste" fitWidth type="text" label="teste" placeholder="testando" />
-          <Input title="teste" fitWidth type="text" label="teste" placeholder="testando" />
+      <Table
+        columns={['Nome', 'Idade', 'Cidade']}
+        content={[
+          ['João', 25, 'São Paulo'],
+          ['Maria', 30, 'Rio de Janeiro'],
+          ['Pedro', 22, 'Belo Horizonte'],
+        ]}
+      />
 
-          <div className={styles['btn-wrapper']}>
-            <Button variant="confirm" fitWidth label="Confirmar" onClick={handleButtonClick} />
-            <Button variant="danger" fitWidth label="Cancelar" onClick={handleButtonClick} />
-          </div>
-        </div>
-      </SidePanel>
+      <SidePanel visible={isVisible} ref={sidePanelRef}></SidePanel>
     </div>
   )
 }
