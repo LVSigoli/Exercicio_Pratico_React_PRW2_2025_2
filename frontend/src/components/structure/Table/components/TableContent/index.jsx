@@ -41,10 +41,7 @@ export const TableContent = ({
           <Button
             label="Remover"
             variant="danger"
-            onClick={e => {
-              e.stopPropagation()
-              onDeleteClick(item.id)
-            }}
+            onClick={() => onDeleteClick(item.id)}
           />
         </td>
       </tr>
