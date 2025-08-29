@@ -1,5 +1,4 @@
 // Components
-import { TableColumns } from './components/TableColumns'
 import { TableContent } from './components/TableContent'
 
 // Styles
@@ -12,13 +11,24 @@ export const Table = ({
   onRowClick,
   onDeleteClick,
 }) => {
+  // Functions
+  function renderColumns() {
+    return columns.map((column, index) => (
+      <tr key={index}>
+        <th className={styles.th}>
+          <p>{column}</p>
+        </th>
+      </tr>
+    ))
+  }
+
   return (
     <div className={styles.container}>
       <h3>{title}</h3>
 
       <table className={styles.table}>
         <thead className={styles.thead}>
-          <TableColumns columns={columns} />
+          {renderColumns()}
         </thead>
 
         <tbody className={styles.tbody}>
