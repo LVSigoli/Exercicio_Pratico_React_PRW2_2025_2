@@ -11,7 +11,6 @@ export const Input = ({
   fitWidth = false,
   onChange,
 }) => {
-  console.log('error: ', errors)
   return (
     <div className={styles.container}>
       <div className={styles['header-wrapper']}>

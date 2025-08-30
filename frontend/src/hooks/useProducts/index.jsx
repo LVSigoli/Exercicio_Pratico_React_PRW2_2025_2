@@ -1,7 +1,10 @@
 // External libraries
 import { useEffect, useState } from 'react'
+
+// Servicers
 import {
   getProducts,
+  createProduct,
   removeProducts,
 } from '../../services/api/products'
 
@@ -55,10 +58,31 @@ export function useProducts({ togglePanel, refreshUsers }) {
     togglePanel()
   }
 
+  async function handleCreateProduct(product) {
+    try {
+      setLoading(true)
+
+      const payload = {
+        nome: product.name,
+        preco: product.price,
+      }
+
+      await createProduct(payload)
+    } catch (error) {
+      console.error(error)
+      // TODO: exibir notificação de erro
+      // showToast({ variant: 'error', message: "Erro ao criar produto" })
+    } finally {
+      setLoading(false)
+      await fetchProducts() // assumindo que você tem uma função para buscar produtos
+    }
+  }
+
   return {
     products,
     loadingProducts: loading,
     handleDeleProduct,
+    handleCreateProduct,
     handleEditProductsClick,
   }
 }

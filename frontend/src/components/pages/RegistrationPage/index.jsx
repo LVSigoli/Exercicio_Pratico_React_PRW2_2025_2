@@ -14,6 +14,7 @@ import { useRegistratinPage } from './hooks/useRegistrationPage'
 
 // Styles
 import styles from './styles.module.css'
+import { ProductsForm } from './views/ProductsForm'
 
 export default function RegistrationPage() {
   // Hooks
@@ -37,6 +38,7 @@ export default function RegistrationPage() {
     products,
     loadingProducts,
     handleDeleProduct,
+    handleCreateProduct,
     handleEditProductsClick,
   } = useProducts({ togglePanel, refreshUsers })
 
@@ -68,9 +70,14 @@ export default function RegistrationPage() {
         visible={isVisible}
         onClose={togglePanel}
       >
-        <UserForm
+        {/* <UserForm
           togglePanel={togglePanel}
           onConfirmClick={handleCreateuser}
+        /> */}
+
+        <ProductsForm
+          togglePanel={togglePanel}
+          onConfirmClick={handleCreateProduct}
         />
       </SidePanel>
     </div>

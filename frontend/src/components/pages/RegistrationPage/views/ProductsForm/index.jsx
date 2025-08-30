@@ -3,23 +3,23 @@ import { Button } from '../../../../structure/Button'
 import { Input } from '../../../../structure/Input/index'
 
 // Hooks
-import { useUserForm } from './hooks/useUserForm'
+import { useProductForm } from './hooks/useProductForm'
 
 // Styles
 import styles from './styles.module.css'
 
-export const UserForm = ({
+export const ProductsForm = ({
   togglePanel,
   onConfirmClick,
 }) => {
-  // Hooks
+  // Hook de produto
   const {
-    name,
+    product,
     errors,
-    handleNameChange,
+    handleFieldChange,
     handleCancelClick,
     handleConfirmClick,
-  } = useUserForm({
+  } = useProductForm({
     onConfirmClick,
     closePanel: togglePanel,
   })
@@ -31,18 +31,33 @@ export const UserForm = ({
 
   return (
     <div className={styles.container}>
-      <h2> Cadastro de usuário</h2>
-      <form
-        className={styles.form}
-        onSubmit={e => handleSubmit(e)}
-      >
+      <h2>Cadastro de Produto</h2>
+
+      <form className={styles.form} onSubmit={handleSubmit}>
         <Input
           fitWidth
           required
-          value={name}
-          errors={errors}
-          title="Nome do usuário"
-          onChange={e => handleNameChange(e.target.value)}
+          value={product.name}
+          errors={errors.name}
+          title="Nome do Produto"
+          onChange={e =>
+            handleFieldChange('name', e.target.value)
+          }
+        />
+
+        <Input
+          fitWidth
+          required
+          type="number"
+          value={product.price}
+          errors={errors.price}
+          title="Preço"
+          onChange={e =>
+            handleFieldChange(
+              'price',
+              parseFloat(e.target.value)
+            )
+          }
         />
 
         <div className={styles['btn-row']}>

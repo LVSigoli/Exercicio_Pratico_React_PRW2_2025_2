@@ -77,7 +77,6 @@ export function useUsers({ togglePanel }) {
       setLoading(true)
 
       await createUser(name)
-      console.log('foi')
     } catch (error) {
       console.log(error)
       //TODO
