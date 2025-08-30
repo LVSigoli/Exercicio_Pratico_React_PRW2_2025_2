@@ -5,12 +5,11 @@ import { ButtonsRow } from './components/ButtonsRow'
 import { SidePanel } from '../../structure/SidePanel'
 
 // Utils
-import { FORM_TYPES } from '../../../utils/fomTypes'
 import { PRODUCTS_COLUMNS, USER_COLUMNS } from './utils'
 
 // Hooks
-import { useRegistratinPage } from './hooks/useRegistrationPage'
-import { useDataContext } from '../../../contexts/Datacontext/indes'
+import { useSidePanel } from './hooks/useSidePanel'
+import { useRegistrationManager } from './hooks/useRegistrationManager'
 
 // Styles
 import styles from './styles.module.css'
@@ -23,46 +22,18 @@ export default function RegistrationPage() {
     sidePanelRef,
     togglePanel,
     openSidePanel,
-  } = useRegistratinPage()
+  } = useSidePanel()
   const {
     users,
     products,
-    handleCreateUser,
     handleDeleteUser,
     handleDeleProduct,
-    handleCreateProduct,
-  } = useDataContext()
-
-  // Functions
-
-  function handleEditProductClick(product) {
-    openSidePanel(FORM_TYPES.PRODUCT_EDIT)
-  }
-
-  function handleEditUserClick(user) {
-    openSidePanel(FORM_TYPES.PURCHASE)
-  }
-
-  function handleCreateUserClick(view) {
-    openSidePanel(FORM_TYPES.USER)
-  }
-
-  function handleCreateProductClick(view) {
-    openSidePanel(FORM_TYPES.PRODUCT)
-  }
-
-  function handleButtonClick(view) {
-    switch (view) {
-      case FORM_TYPES.USER:
-        return openSidePanel(FORM_TYPES.USER)
-
-      case FORM_TYPES.PRODUCT:
-        return openSidePanel(FORM_TYPES.PRODUCT)
-
-      default:
-        return null
-    }
-  }
+    handleButtonClick,
+    handleEditUserClick,
+    handleCreateUserClick,
+    handleEditProductClick,
+    handleCreateProductClick,
+  } = useRegistrationManager({ openSidePanel })
 
   return (
     <div className={styles.container}>

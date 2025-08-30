@@ -1,7 +1,7 @@
 // External Libraries
 import { useEffect, useState, useRef } from 'react'
 
-export function useRegistratinPage() {
+export function useSidePanel() {
   // Refs
   const sidePanelRef = useRef(null)
 
@@ -50,6 +50,7 @@ export function useRegistratinPage() {
     view,
     isVisible,
     sidePanelRef,
+    togglePanel,
     openSidePanel,
     handleButtonClick,
   }

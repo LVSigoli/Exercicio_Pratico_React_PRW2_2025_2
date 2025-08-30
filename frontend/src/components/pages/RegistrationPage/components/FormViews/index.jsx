@@ -2,6 +2,9 @@
 import { UserForm } from '../../views/UserForm'
 import { ProductsForm } from '../../views/ProductsForm'
 
+// Hooks
+import { useDataContext } from '../../../../../contexts/Datacontext/indes'
+
 // Utils
 import { FORM_TYPES } from '../../../../../utils/fomTypes'
 
@@ -9,14 +12,24 @@ import { FORM_TYPES } from '../../../../../utils/fomTypes'
 import styles from './styles.module.css'
 
 export const FormViews = ({ currentView }) => {
+  // Hooks
+  const { handleCreateProduct, handleCreateUser } =
+    useDataContext()
+
   // Functions
   function renderForms() {
     switch (currentView) {
       case FORM_TYPES.USER:
-        return <UserForm />
+        return (
+          <UserForm onConfirmClick={handleCreateUser} />
+        )
 
       case FORM_TYPES.PRODUCT:
-        return <ProductsForm />
+        return (
+          <ProductsForm
+            onConfirmClick={handleCreateProduct}
+          />
+        )
 
       case FORM_TYPES.PURCHASE:
         return <UserForm />
