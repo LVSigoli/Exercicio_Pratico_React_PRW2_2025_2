@@ -18,8 +18,11 @@ export const FormViews = ({
   onClose,
 }) => {
   // Hooks
-  const { handleCreateProduct, handleCreateUser } =
-    useDataContext()
+  const {
+    handleCreateUser,
+    handleCreateProduct,
+    handleUpdateProduct,
+  } = useDataContext()
 
   // Functions
   function renderForms() {
@@ -35,8 +38,8 @@ export const FormViews = ({
       case FORM_TYPES.PRODUCT:
         return (
           <ProductsForm
-            onConfirmClick={handleCreateProduct}
             onClose={onClose}
+            onConfirmClick={handleCreateProduct}
           />
         )
 
@@ -48,6 +51,7 @@ export const FormViews = ({
           <ProductsForm
             selectedProduct={currentProduct}
             onClose={onClose}
+            onConfirmClick={handleUpdateProduct}
           />
         )
 

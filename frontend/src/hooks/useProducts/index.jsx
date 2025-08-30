@@ -9,6 +9,7 @@ import {
   getProducts,
   createProduct,
   removeProducts,
+  updateProduct,
 } from '../../services/api/products'
 
 export function useProducts({ refreshUsers }) {
@@ -76,7 +77,9 @@ export function useProducts({ refreshUsers }) {
       // showToast({ variant: 'error', message: "Erro ao criar produto" })
     } finally {
       setLoading(false)
-      await fetchProducts() // assumindo que você tem uma função para buscar produtos
+      await fetchProducts()
+      // TODO: exibir notificação de erro
+      // showToast({ variant: 'success', message: "Produto criado com sucesso" })
     }
   }
 
@@ -84,11 +87,34 @@ export function useProducts({ refreshUsers }) {
     setSelectedProduct(product)
   }
 
+  async function handleUpdateProduct(product) {
+    try {
+      setLoading(true)
+
+      const payload = {
+        id: product.id,
+        nome: product.name,
+        preco: product.price,
+      }
+
+      await updateProduct(payload)
+    } catch (error) {
+      //Todo
+      //showToast({variant: 'error', message:"Erro ao editar produto"})
+    } finally {
+      setLoading(false)
+      await fetchProducts()
+      //Todo
+      //showToast({variant: 'error', message:"Produto editado"})
+    }
+  }
+
   return {
     products,
     selectedProduct,
     loadingProducts: loading,
     handleDeleProduct,
+    handleUpdateProduct,
     handleCreateProduct,
     handleProductSelection,
   }

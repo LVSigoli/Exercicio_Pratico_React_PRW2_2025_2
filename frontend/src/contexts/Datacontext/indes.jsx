@@ -20,6 +20,7 @@ export const DataProvider = ({ children }) => {
     loadingProducts,
     selectedProduct,
     handleDeleProduct,
+    handleUpdateProduct,
     handleCreateProduct,
     handleProductSelection,
   } = useProducts({ refreshUsers })
@@ -35,6 +36,7 @@ export const DataProvider = ({ children }) => {
         handleCreateUser,
         handleDeleteUser,
         handleDeleProduct,
+        handleUpdateProduct,
         handleCreateProduct,
         handleProductSelection,
       }}
