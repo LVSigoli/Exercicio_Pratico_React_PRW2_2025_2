@@ -33,10 +33,11 @@ export function useProducts({ togglePanel, refreshUsers }) {
     }
   }
 
-  async function handleDeleProduct(userId) {
+  async function handleDeleProduct(product) {
     try {
+      const id = product?.id
       setLoading(true)
-      await removeProducts(userId)
+      await removeProducts(id)
 
       await fetchProducts()
       refreshUsers()
@@ -50,7 +51,7 @@ export function useProducts({ togglePanel, refreshUsers }) {
     }
   }
 
-  function handleProductRowClick() {
+  function handleEditProductsClick() {
     togglePanel()
   }
 
@@ -58,6 +59,6 @@ export function useProducts({ togglePanel, refreshUsers }) {
     products,
     loadingProducts: loading,
     handleDeleProduct,
-    handleProductRowClick,
+    handleEditProductsClick,
   }
 }

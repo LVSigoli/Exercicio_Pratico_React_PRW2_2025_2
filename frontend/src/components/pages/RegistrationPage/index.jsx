@@ -13,6 +13,7 @@ import { useRegistratinPage } from './hooks/useRegistrationPage'
 
 // Styles
 import styles from './styles.module.css'
+import { usePurchases } from '../../../hooks/usePurchases'
 
 export default function RegistrationPage() {
   // Hooks
@@ -22,19 +23,26 @@ export default function RegistrationPage() {
     togglePanel,
     handleButtonClick,
   } = useRegistratinPage()
+
+  const {
+    loadingPurchases,
+    handleDeletePurchase,
+    handleEditPurchasesClick,
+  } = usePurchases({ togglePanel })
+
   const {
     users,
     loading,
     refreshUsers,
     handleDeleteUser,
-    handleUserRowClick,
+    handleEditUserClick,
   } = useUsers({ togglePanel })
 
   const {
     products,
     loadingProducts,
     handleDeleProduct,
-    handleProductRowClick,
+    handleEditProductsClick,
   } = useProducts({ togglePanel, refreshUsers })
 
   return (
@@ -48,18 +56,16 @@ export default function RegistrationPage() {
           title="Clientes"
           content={users}
           columns={USER_COLUMNS}
-          onRowClick={handleUserRowClick}
           onDeleteClick={handleDeleteUser}
+          onEditClick={handleEditUserClick}
         />
-      </div>
 
-      <div className={styles.content}>
         <Table
           title="Produtos"
           content={products}
           columns={PRODUCTS_COLUMNS}
           onDeleteClick={handleDeleProduct}
-          onRowClick={handleProductRowClick}
+          onEditClick={handleEditProductsClick}
         />
       </div>
       <SidePanel ref={sidePanelRef} visible={isVisible} />

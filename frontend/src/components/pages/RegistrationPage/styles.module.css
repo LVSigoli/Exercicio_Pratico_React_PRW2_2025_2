@@ -13,7 +13,13 @@
 .content {
   width: 100%;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(40rem, 1fr)
+  );
+
+  gap: 1.75rem;
   padding: 1rem;
   align-items: flex-start;
 }

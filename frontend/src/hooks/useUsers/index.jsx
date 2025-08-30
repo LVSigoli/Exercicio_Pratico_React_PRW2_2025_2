@@ -6,6 +6,7 @@ import {
   getUsers,
   removeUser,
 } from '../../services/api/user'
+import { removePurchase } from '../../services/api/purchases'
 
 export function useUsers({ togglePanel }) {
   // States
@@ -33,10 +34,13 @@ export function useUsers({ togglePanel }) {
     }
   }
 
-  async function handleDeleteUser(userId) {
+  async function handleDeleteUser(user) {
     try {
       setLoading(true)
-      await removeUser(userId)
+
+      const id = user?.id
+
+      await removeUser(id)
 
       await fetchUsers()
     } catch (error) {
@@ -49,7 +53,29 @@ export function useUsers({ togglePanel }) {
     }
   }
 
-  function handleUserRowClick() {
+  // Functions
+  async function handleDeletePurchase(purchase) {
+    try {
+      setLoading(true)
+
+      const {} = purchase
+
+      await removePurchase(params)
+    } catch (error) {
+      //TODO
+      //showToast({variant = 'error', message: "Erro ao remover usuários"})
+    } finally {
+      setLoading(false)
+      //TODO
+      //showToast({variant = 'success', message: "Produto removido"})
+    }
+  }
+
+  function handleEditPurchasesClick() {
+    togglePanel()
+  }
+
+  function handleEditUserClick() {
     togglePanel()
   }
 
@@ -58,6 +84,8 @@ export function useUsers({ togglePanel }) {
     loading,
     refreshUsers: fetchUsers,
     handleDeleteUser,
-    handleUserRowClick,
+    handleEditUserClick,
+    handleDeletePurchase,
+    handleDeletePurchase,
   }
 }

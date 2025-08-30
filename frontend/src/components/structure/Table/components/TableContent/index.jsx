@@ -9,23 +9,29 @@ import styles from './styles.module.css'
 
 export const TableContent = ({
   content,
-  onRowClick,
+  onEditClick,
   onDeleteClick,
 }) => {
   // Constants
-  const lastIndex = content.length - 1
+  const lastIndex = content?.length - 1
+  const validContent = Array.isArray(content) ? content : []
 
   // Functions
   function verifyLastIndex(index) {
     return index !== lastIndex ? styles['tr-border'] : ''
   }
 
-  function handleClick(e, itemId) {
+  function handleEditClick(e, item) {
     e.stopPropagation()
-    onDeleteClick(itemId)
+    onEditClick(item)
   }
 
-  return content.map((item, index) => {
+  function handleDeleteClick(e, item) {
+    e.stopPropagation()
+    onDeleteClick(item)
+  }
+
+  return validContent?.map((item, index) => {
     const values = Object.entries(item)
       .filter(([key]) => key !== 'id')
       .map(([, value]) => parseValues(value))
@@ -34,7 +40,7 @@ export const TableContent = ({
       <tr
         key={item.id}
         className={`${styles.tr} ${verifyLastIndex(index)}`}
-        onClick={() => onRowClick(item)}
+        onClick={() => onEditClick(item)}
       >
         {values.map((val, i) => (
           <td className={styles.td} key={i}>
@@ -44,9 +50,15 @@ export const TableContent = ({
 
         <td className={styles['btn-td']}>
           <Button
+            label="Editar"
+            variant="default"
+            onClick={e => handleEditClick(e, item)}
+          />
+
+          <Button
             label="Remover"
             variant="danger"
-            onClick={e => handleClick(e, item.id)}
+            onClick={e => handleDeleteClick(e, item)}
           />
         </td>
       </tr>
