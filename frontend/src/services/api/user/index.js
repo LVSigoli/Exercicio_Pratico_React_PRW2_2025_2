@@ -1,2 +1,3 @@
-export * from './ user.get'
-export * from './user.{userId}.delete'
+export * from './users.get'
+export * from './users.post'
+export * from './users.{userId}.delete'

@@ -1,6 +1,6 @@
 .container {
   width: 40rem;
-  height: 100dvh;
+  height: 100%;
 
   border-radius: 2rem;
 
@@ -29,6 +29,10 @@
 .hidden {
   transform: translateX(100%);
   opacity: 0;
+}
+
+.close {
+  cursor: pointer;
 }
 
 .backdrop {

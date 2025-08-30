@@ -12,6 +12,36 @@
   color: var(--color-text-secondary);
 }
 
+.error {
+  color: var(--color-danger);
+}
+
+.header-wrapper {
+  width: 100%;
+
+  gap: 0.25rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.required {
+  color: var(--color-danger);
+}
+
+.error-input {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-danger);
+  border-radius: 0.5rem;
+
+  border-radius: 0.5rem;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
 .input {
   padding: 0.5rem 1rem;
   font-size: 1rem;

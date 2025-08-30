@@ -1,4 +1,5 @@
 // Components
+import { UserForm } from './views/UserForm'
 import { Table } from '../../structure/Table'
 import { ButtonsRow } from './components/ButtonsRow'
 import { SidePanel } from '../../structure/SidePanel'
@@ -13,7 +14,6 @@ import { useRegistratinPage } from './hooks/useRegistrationPage'
 
 // Styles
 import styles from './styles.module.css'
-import { usePurchases } from '../../../hooks/usePurchases'
 
 export default function RegistrationPage() {
   // Hooks
@@ -25,16 +25,11 @@ export default function RegistrationPage() {
   } = useRegistratinPage()
 
   const {
-    loadingPurchases,
-    handleDeletePurchase,
-    handleEditPurchasesClick,
-  } = usePurchases({ togglePanel })
-
-  const {
     users,
     loading,
     refreshUsers,
     handleDeleteUser,
+    handleCreateuser,
     handleEditUserClick,
   } = useUsers({ togglePanel })
 
@@ -68,7 +63,16 @@ export default function RegistrationPage() {
           onEditClick={handleEditProductsClick}
         />
       </div>
-      <SidePanel ref={sidePanelRef} visible={isVisible} />
+      <SidePanel
+        ref={sidePanelRef}
+        visible={isVisible}
+        onClose={togglePanel}
+      >
+        <UserForm
+          togglePanel={togglePanel}
+          onConfirmClick={handleCreateuser}
+        />
+      </SidePanel>
     </div>
   )
 }

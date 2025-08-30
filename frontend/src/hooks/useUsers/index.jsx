@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 // Serivices
 import {
+  createUser,
   getUsers,
   removeUser,
 } from '../../services/api/user'
@@ -71,6 +72,22 @@ export function useUsers({ togglePanel }) {
     }
   }
 
+  async function handleCreateuser(name) {
+    try {
+      setLoading(true)
+
+      await createUser(name)
+      console.log('foi')
+    } catch (error) {
+      console.log(error)
+      //TODO
+      //showToast({variant = 'success', message: "Produto removido"})
+    } finally {
+      setLoading(false)
+      await fetchUsers()
+    }
+  }
+
   function handleEditPurchasesClick() {
     togglePanel()
   }
@@ -84,6 +101,7 @@ export function useUsers({ togglePanel }) {
     loading,
     refreshUsers: fetchUsers,
     handleDeleteUser,
+    handleCreateuser,
     handleEditUserClick,
     handleDeletePurchase,
     handleDeletePurchase,
