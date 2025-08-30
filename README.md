@@ -88,8 +88,8 @@ O frontend está organizado em pastas para manter **modularidade e clareza** no 
 
 - DELETE /compras/<ID_PRODUTO>/<ID_USUARIO> - Remove uma compra específica de um usuário de um produto.
 
-# ROTAS A INTEGRAR
-
 - PUT /produtos/<ID> - Edita um produto existente. Deve ser enviado no corpo da requisição os parâmetros nome e preco em formato json. O preco deve ser um número maior que zero.
+
+# ROTAS A INTEGRAR
 
 - POST /compras - Cadastra uma nova compra produto. Deve ser enviado no corpo da requisição os parâmetros id_produto e id_usuario em formato json. Ambos id_produto e id_usuario devem ser valores válidos e devem ser únicos.
