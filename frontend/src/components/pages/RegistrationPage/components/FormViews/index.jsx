@@ -6,12 +6,17 @@ import { ProductsForm } from '../../views/ProductsForm'
 import { useDataContext } from '../../../../../contexts/Datacontext/indes'
 
 // Utils
-import { FORM_TYPES } from '../../../../../utils/fomTypes'
+import { FORM_TYPES } from '../../../../../utils'
 
 // Styles
 import styles from './styles.module.css'
 
-export const FormViews = ({ currentView }) => {
+export const FormViews = ({
+  currentView,
+  currentUser,
+  currentProduct,
+  onClose,
+}) => {
   // Hooks
   const { handleCreateProduct, handleCreateUser } =
     useDataContext()
@@ -21,13 +26,17 @@ export const FormViews = ({ currentView }) => {
     switch (currentView) {
       case FORM_TYPES.USER:
         return (
-          <UserForm onConfirmClick={handleCreateUser} />
+          <UserForm
+            onClose={onClose}
+            onConfirmClick={handleCreateUser}
+          />
         )
 
       case FORM_TYPES.PRODUCT:
         return (
           <ProductsForm
             onConfirmClick={handleCreateProduct}
+            onClose={onClose}
           />
         )
 
@@ -35,7 +44,12 @@ export const FormViews = ({ currentView }) => {
         return <UserForm />
 
       case FORM_TYPES.PRODUCT_EDIT:
-        return <ProductsForm />
+        return (
+          <ProductsForm
+            selectedProduct={currentProduct}
+            onClose={onClose}
+          />
+        )
 
       default:
         return null

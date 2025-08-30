@@ -8,6 +8,7 @@ import { parseValues } from './utils'
 import styles from './styles.module.css'
 
 export const TableContent = ({
+  canEdit,
   content,
   onEditClick,
   onDeleteClick,
@@ -23,7 +24,7 @@ export const TableContent = ({
 
   function handleEditClick(e, item) {
     e.stopPropagation()
-    onEditClick(item)
+    if (canEdit) onEditClick(item)
   }
 
   function handleDeleteClick(e, item) {
@@ -40,20 +41,20 @@ export const TableContent = ({
       <tr
         key={item.id}
         className={`${styles.tr} ${verifyLastIndex(index)}`}
-        onClick={() => onEditClick(item)}
       >
         {values.map((val, i) => (
           <td className={styles.td} key={i}>
             <p>{val}</p>
           </td>
         ))}
-
         <td className={styles['btn-td']}>
-          <Button
-            label="Editar"
-            variant="default"
-            onClick={e => handleEditClick(e, item)}
-          />
+          {canEdit ? (
+            <Button
+              label="Editar"
+              variant="default"
+              onClick={e => handleEditClick(e, item)}
+            />
+          ) : null}
 
           <Button
             label="Remover"

@@ -8,6 +8,7 @@ export const Table = ({
   title,
   columns,
   content,
+  canEdit = true,
   onEditClick,
   onDeleteClick,
 }) => {
@@ -34,6 +35,7 @@ export const Table = ({
         <tbody className={styles.tbody}>
           <TableContent
             content={content}
+            canEdit={canEdit}
             onEditClick={onEditClick}
             onDeleteClick={onDeleteClick}
           />

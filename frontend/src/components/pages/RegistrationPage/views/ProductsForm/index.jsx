@@ -9,7 +9,8 @@ import { useProductForm } from './hooks/useProductForm'
 import styles from './styles.module.css'
 
 export const ProductsForm = ({
-  togglePanel,
+  selectedProduct,
+  onClose,
   onConfirmClick,
 }) => {
   // Hook de produto
@@ -20,8 +21,9 @@ export const ProductsForm = ({
     handleCancelClick,
     handleConfirmClick,
   } = useProductForm({
+    selectedProduct,
     onConfirmClick,
-    closePanel: togglePanel,
+    closePanel: onClose,
   })
 
   function handleSubmit(e) {

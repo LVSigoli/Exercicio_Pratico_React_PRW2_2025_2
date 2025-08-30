@@ -8,10 +8,7 @@ import { useUserForm } from './hooks/useUserForm'
 // Styles
 import styles from './styles.module.css'
 
-export const UserForm = ({
-  togglePanel,
-  onConfirmClick,
-}) => {
+export const UserForm = ({ onClose, onConfirmClick }) => {
   // Hooks
   const {
     name,
@@ -21,7 +18,7 @@ export const UserForm = ({
     handleConfirmClick,
   } = useUserForm({
     onConfirmClick,
-    closePanel: togglePanel,
+    closePanel: onClose,
   })
 
   function handleSubmit(e) {

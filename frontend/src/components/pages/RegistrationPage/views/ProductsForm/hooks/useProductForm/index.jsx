@@ -1,16 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   makeInitialErros,
   makeInitialProduct,
 } from './utils'
 
 export function useProductForm({
+  selectedProduct,
   onConfirmClick,
   closePanel,
 }) {
   // States
   const [errors, setErrors] = useState(makeInitialErros)
   const [product, setProduct] = useState(makeInitialProduct)
+
+  useEffect(() => {
+    if (selectedProduct)
+      setProduct({
+        id: selectedProduct.id,
+        name: selectedProduct.nome,
+        price: selectedProduct.preco,
+      })
+  }, [selectedProduct])
 
   // Functions
   function checkErrors(nextProduct = product) {

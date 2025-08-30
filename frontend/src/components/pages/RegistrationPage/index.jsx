@@ -26,6 +26,7 @@ export default function RegistrationPage() {
   const {
     users,
     products,
+    selectedProduct,
     handleDeleteUser,
     handleDeleProduct,
     handleButtonClick,
@@ -43,6 +44,7 @@ export default function RegistrationPage() {
 
       <div className={styles.content}>
         <Table
+          canEdit
           title="Clientes"
           content={users}
           columns={USER_COLUMNS}
@@ -51,10 +53,11 @@ export default function RegistrationPage() {
         />
 
         <Table
+          canEdit
           title="Produtos"
           content={products}
           columns={PRODUCTS_COLUMNS}
-          onEditClick={handleCreateProductClick}
+          onEditClick={handleEditProductClick}
           onDeleteClick={handleDeleProduct}
         />
       </div>
@@ -64,7 +67,12 @@ export default function RegistrationPage() {
         visible={isVisible}
         onClose={togglePanel}
       >
-        <FormViews currentView={view} />
+        <FormViews
+          currentUser={''}
+          currentView={view}
+          currentProduct={selectedProduct}
+          onClose={togglePanel}
+        />
       </SidePanel>
     </div>
   )

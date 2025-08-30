@@ -2,7 +2,7 @@
 import { Button } from '../../../../structure/Button'
 
 // Utils
-import { FORM_TYPES } from '../../../../../utils/fomTypes'
+import { FORM_TYPES } from '../../../../../utils'
 
 // Styles
 import styles from './styles.module.css'

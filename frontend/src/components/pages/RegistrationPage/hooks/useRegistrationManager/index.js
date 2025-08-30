@@ -2,22 +2,26 @@
 import { useDataContext } from '../../../../../contexts/Datacontext/indes'
 
 // Utils
-import { FORM_TYPES } from '../../../../../utils/fomTypes'
+import { FORM_TYPES } from '../../../../../utils'
 
 export function useRegistrationManager({ openSidePanel }) {
   // Hooks
   const {
     users,
     products,
+    selectedProduct,
     handleCreateUser,
     handleDeleteUser,
     handleDeleProduct,
     handleCreateProduct,
+    handleProductSelection,
   } = useDataContext()
 
   // Functions
   function handleEditProductClick(product) {
     openSidePanel(FORM_TYPES.PRODUCT_EDIT)
+
+    handleProductSelection(product)
   }
 
   function handleEditUserClick(user) {
@@ -48,6 +52,7 @@ export function useRegistrationManager({ openSidePanel }) {
   return {
     users,
     products,
+    selectedProduct,
     handleCreateUser,
     handleDeleteUser,
     handleDeleProduct,

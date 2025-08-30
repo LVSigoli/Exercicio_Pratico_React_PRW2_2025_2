@@ -1,6 +1,9 @@
 // External libraries
 import { useEffect, useState } from 'react'
 
+// Utils
+import { makeInitialProduct } from '../../utils'
+
 // Servicers
 import {
   getProducts,
@@ -10,8 +13,11 @@ import {
 
 export function useProducts({ refreshUsers }) {
   // States
-  const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState(
+    makeInitialProduct()
+  )
 
   // Effects
   useEffect(() => {
@@ -74,10 +80,16 @@ export function useProducts({ refreshUsers }) {
     }
   }
 
+  function handleProductSelection(product) {
+    setSelectedProduct(product)
+  }
+
   return {
     products,
+    selectedProduct,
     loadingProducts: loading,
     handleDeleProduct,
     handleCreateProduct,
+    handleProductSelection,
   }
 }

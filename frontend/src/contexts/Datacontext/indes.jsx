@@ -4,7 +4,6 @@ import { createContext, useContext } from 'react'
 // Hooks
 import { useUsers } from '../../hooks/useUsers'
 import { useProducts } from '../../hooks/useProducts'
-
 const DataContext = createContext()
 
 export const DataProvider = ({ children }) => {
@@ -19,8 +18,10 @@ export const DataProvider = ({ children }) => {
   const {
     products,
     loadingProducts,
+    selectedProduct,
     handleDeleProduct,
     handleCreateProduct,
+    handleProductSelection,
   } = useProducts({ refreshUsers })
 
   return (
@@ -30,10 +31,12 @@ export const DataProvider = ({ children }) => {
         loading,
         products,
         loadingProducts,
+        selectedProduct,
         handleCreateUser,
         handleDeleteUser,
         handleDeleProduct,
         handleCreateProduct,
+        handleProductSelection,
       }}
     >
       {children}
