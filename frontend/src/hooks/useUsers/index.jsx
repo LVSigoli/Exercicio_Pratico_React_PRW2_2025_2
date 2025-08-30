@@ -44,17 +44,20 @@ export function useUsers({ togglePanel }) {
       //showToast({variant = 'error', message: "Erro ao remover usuários"})
     } finally {
       setLoading(false)
+      //TODO
+      //showToast({variant = 'success', message: "Produto removido"})
     }
   }
 
-  function handleRowClick() {
+  function handleUserRowClick() {
     togglePanel()
   }
 
   return {
     users,
     loading,
-    handleRowClick,
+    refreshUsers: fetchUsers,
     handleDeleteUser,
+    handleUserRowClick,
   }
 }

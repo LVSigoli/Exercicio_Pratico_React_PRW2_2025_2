@@ -20,6 +20,11 @@ export const TableContent = ({
     return index !== lastIndex ? styles['tr-border'] : ''
   }
 
+  function handleClick(e, itemId) {
+    e.stopPropagation()
+    onDeleteClick(itemId)
+  }
+
   return content.map((item, index) => {
     const values = Object.entries(item)
       .filter(([key]) => key !== 'id')
@@ -41,7 +46,7 @@ export const TableContent = ({
           <Button
             label="Remover"
             variant="danger"
-            onClick={() => onDeleteClick(item.id)}
+            onClick={e => handleClick(e, item.id)}
           />
         </td>
       </tr>
