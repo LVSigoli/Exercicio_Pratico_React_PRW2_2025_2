@@ -30,7 +30,7 @@ export const ProductsForm = ({
   }
 
   return (
-    <div className={styles.container}>
+    <>
       <h2>Cadastro de Produto</h2>
 
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -75,6 +75,6 @@ export const ProductsForm = ({
           />
         </div>
       </form>
-    </div>
+    </>
   )
 }

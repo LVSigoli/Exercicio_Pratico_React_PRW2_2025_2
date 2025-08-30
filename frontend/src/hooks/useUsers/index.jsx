@@ -9,7 +9,7 @@ import {
 } from '../../services/api/user'
 import { removePurchase } from '../../services/api/purchases'
 
-export function useUsers({ togglePanel }) {
+export function useUsers() {
   // States
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
@@ -72,7 +72,7 @@ export function useUsers({ togglePanel }) {
     }
   }
 
-  async function handleCreateuser(name) {
+  async function handleCreateUser(name) {
     try {
       setLoading(true)
 
@@ -87,21 +87,12 @@ export function useUsers({ togglePanel }) {
     }
   }
 
-  function handleEditPurchasesClick() {
-    togglePanel()
-  }
-
-  function handleEditUserClick() {
-    togglePanel()
-  }
-
   return {
     users,
     loading,
     refreshUsers: fetchUsers,
     handleDeleteUser,
-    handleCreateuser,
-    handleEditUserClick,
+    handleCreateUser,
     handleDeletePurchase,
     handleDeletePurchase,
   }

@@ -13,15 +13,22 @@ export function useRegistratinPage() {
   useEffect(() => {
     function handleClickOutside(event) {
       const hasSidePanelRef =
-        sidePanelRef.current && !sidePanelRef.current.contains(event.target)
+        sidePanelRef.current &&
+        !sidePanelRef.current.contains(event.target)
 
       if (hasSidePanelRef) setIsVisible(false)
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener(
+      'mousedown',
+      handleClickOutside
+    )
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener(
+        'mousedown',
+        handleClickOutside
+      )
     }
   }, [])
 
@@ -34,5 +41,16 @@ export function useRegistratinPage() {
     togglePanel()
   }
 
-  return { sidePanelRef, isVisible, togglePanel, handleButtonClick }
+  function openSidePanel(view) {
+    setView(view)
+    togglePanel()
+  }
+
+  return {
+    view,
+    isVisible,
+    sidePanelRef,
+    openSidePanel,
+    handleButtonClick,
+  }
 }

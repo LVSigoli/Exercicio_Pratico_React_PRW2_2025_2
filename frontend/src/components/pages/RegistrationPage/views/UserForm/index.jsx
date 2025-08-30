@@ -30,7 +30,7 @@ export const UserForm = ({
   }
 
   return (
-    <div className={styles.container}>
+    <div>
       <h2> Cadastro de usuário</h2>
       <form
         className={styles.form}

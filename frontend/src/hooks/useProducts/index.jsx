@@ -8,7 +8,7 @@ import {
   removeProducts,
 } from '../../services/api/products'
 
-export function useProducts({ togglePanel, refreshUsers }) {
+export function useProducts({ refreshUsers }) {
   // States
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
@@ -54,10 +54,6 @@ export function useProducts({ togglePanel, refreshUsers }) {
     }
   }
 
-  function handleEditProductsClick() {
-    togglePanel()
-  }
-
   async function handleCreateProduct(product) {
     try {
       setLoading(true)
@@ -83,6 +79,5 @@ export function useProducts({ togglePanel, refreshUsers }) {
     loadingProducts: loading,
     handleDeleProduct,
     handleCreateProduct,
-    handleEditProductsClick,
   }
 }
