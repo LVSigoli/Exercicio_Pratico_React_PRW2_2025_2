@@ -4,7 +4,6 @@ export const Chevron = props => (
     width={24}
     height={24}
     fill="none"
-    viewBox="24,24"
     {...props}
   >
     <path

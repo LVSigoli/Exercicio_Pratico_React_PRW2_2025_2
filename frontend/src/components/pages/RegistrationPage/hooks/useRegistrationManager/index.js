@@ -27,7 +27,6 @@ export function useRegistrationManager({ openSidePanel }) {
   }
 
   function handleEditUserClick(user) {
-    console.log(user)
     openSidePanel(FORM_TYPES.PURCHASE)
     handleUserSelection(user)
   }
