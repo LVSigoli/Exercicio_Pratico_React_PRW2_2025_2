@@ -2,6 +2,6 @@ export function makeInitialUser() {
   return {
     id: '',
     nome: '',
-    prdutos: [],
+    produtos: [],
   }
 }

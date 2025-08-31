@@ -45,7 +45,6 @@ export function useProductForm({
   function handleFieldChange(key, value) {
     const updatedProduct = { ...product, [key]: value }
     setProduct(updatedProduct)
-    setErrors(checkErrors(updatedProduct))
   }
 
   function handleCancelClick() {
@@ -58,7 +57,6 @@ export function useProductForm({
     const validationErrors = checkErrors(product)
     setErrors(validationErrors)
 
-    // Se houver algum erro, não continua
     if (Object.values(validationErrors).some(err => !!err))
       return
 

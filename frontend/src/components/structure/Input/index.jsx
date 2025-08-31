@@ -4,10 +4,11 @@ import styles from './styles.module.css'
 export const Input = ({
   name,
   title,
-  errors,
   value,
+  errors,
   placeholder,
   type = 'text',
+  disabled = false,
   required = false,
   fitWidth = false,
   onChange,
@@ -36,7 +37,9 @@ export const Input = ({
         onChange={onChange}
         className={`${
           errors ? styles['error-input'] : styles.input
-        } ${fitWidth ? styles.fitWidth : ''} `}
+        } ${fitWidth ? styles.fitWidth : ''} ${
+          disabled ? styles.disabled : ''
+        }`}
       />
 
       {errors ? (

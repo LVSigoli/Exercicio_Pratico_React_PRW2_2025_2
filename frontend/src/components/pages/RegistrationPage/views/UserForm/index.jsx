@@ -73,10 +73,11 @@ export const UserForm = ({
         <Input
           fitWidth
           required
-          value={name}
           name="name"
+          value={name}
           errors={errors}
           title="Nome do usuário"
+          disabled={FORM_TYPES.PURCHASE === view}
           onChange={e => handleNameChange(e.target.value)}
         />
 

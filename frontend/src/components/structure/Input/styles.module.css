@@ -64,6 +64,11 @@
   margin: 0;
 }
 
+.input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
 .input:focus {
   border-color: none;
 }
@@ -74,4 +79,13 @@
 
 .fitWidth {
   width: 100%;
+}
+
+.input.disabled {
+  background-color: rgba(229, 231, 235, 0.1);
+
+  cursor: not-allowed;
+  pointer-events: none;
+  color: rgba(107, 114, 128, 0.7);
+  border-color: rgba(203, 213, 225, 0.5);
 }

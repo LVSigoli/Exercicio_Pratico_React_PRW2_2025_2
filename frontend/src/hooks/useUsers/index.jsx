@@ -36,8 +36,7 @@ export function useUsers() {
 
       setUsers(response)
     } catch (error) {
-      //TODO
-      //showToast({variant = 'error', message: "Erro ao buscar usuários"})
+      console.log(error)
     } finally {
       setLoading(false)
     }
@@ -53,12 +52,9 @@ export function useUsers() {
 
       await fetchUsers()
     } catch (error) {
-      //TODO
-      //showToast({variant = 'error', message: "Erro ao remover usuários"})
+      console.log(error)
     } finally {
       setLoading(false)
-      //TODO
-      //showToast({variant = 'success', message: "Produto removido"})
     }
   }
 

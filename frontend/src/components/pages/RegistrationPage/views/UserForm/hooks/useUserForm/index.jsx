@@ -1,5 +1,7 @@
 // External Libraries
 import { useEffect, useState } from 'react'
+
+// Utils
 import { makeInitialOption } from '../utils'
 import { FORM_TYPES } from '../../../../../../../utils'
 
@@ -70,21 +72,24 @@ export function useUserForm({
   function parseProductToOption(products) {
     if (
       !Array.isArray(products) ||
-      !Array.isArray(currentUser.produtos)
+      !Array.isArray(currentUser?.produtos)
     ) {
       return []
     }
-    const userProductIds =
-      currentUser?.produtos?.map(p => p.id) || []
 
-    return products
-      .filter(
-        product => !userProductIds.includes(product.id)
-      )
-      .map(product => ({
-        value: product.id,
-        label: `${product.nome} R$ ${product.preco}`,
-      }))
+    if (currentUser?.produtos) {
+      const userProductIds =
+        currentUser?.produtos?.map(p => p.id) || []
+
+      return products
+        .filter(
+          product => !userProductIds.includes(product.id)
+        )
+        .map(product => ({
+          value: product.id,
+          label: `${product.nome} R$ ${product.preco}`,
+        }))
+    }
   }
 
   function handleOptionSelection(option) {
