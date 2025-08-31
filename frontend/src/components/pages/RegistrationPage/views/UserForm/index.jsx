@@ -1,10 +1,12 @@
 // Components
 import { Table } from '../../../../structure/Table'
 import { ButtonsRow } from './components/ButtonsRow'
+import { Select } from '../../../../structure/Select'
 import { Input } from '../../../../structure/Input/index'
 
 // Hooks
 import { useUserForm } from './hooks/useUserForm'
+import { useDataContext } from '../../../../../contexts/Datacontext/indes'
 
 // Utils
 import { PRODUCTS_COLUMNS } from './utils'
@@ -21,15 +23,20 @@ export const UserForm = ({
   onConfirm,
 }) => {
   // Hooks
+  const { products } = useDataContext()
   const {
     name,
     errors,
+    selectedOption,
+    productOptions,
     handleNameChange,
     handleCancelClick,
     handleConfirmClick,
+    handleOptionSelection,
   } = useUserForm({
-    currentUser,
+    products,
     onConfirm,
+    currentUser,
     closePanel: onClose,
   })
 
@@ -40,10 +47,7 @@ export const UserForm = ({
   }
 
   function handleDelete(product) {
-    console.log('oi')
     if (!onDelete) return
-
-    console.log('oiee')
 
     const purchase = {
       productId: product.id,
@@ -72,6 +76,12 @@ export const UserForm = ({
           errors={errors}
           title="Nome do usuário"
           onChange={e => handleNameChange(e.target.value)}
+        />
+
+        <Select
+          options={productOptions}
+          selectedOption={selectedOption}
+          onOptionSelect={handleOptionSelection}
         />
 
         {FORM_TYPES.PURCHASE === view ? (

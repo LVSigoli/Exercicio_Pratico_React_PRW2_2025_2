@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  display: flex;
+
+  cursor: pointer;
+  align-items: center;
+  flex-direction: column;
+}
+
+.selection-panel {
+  width: 100%;
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.25rem 0.5rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.selection-panel-placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.chevron-down {
+  transform: rotate(180deg);
+}
+
+.panel-wrapper {
+  width: 100%;
+  z-index: 5;
+
+  position: relative;
+}

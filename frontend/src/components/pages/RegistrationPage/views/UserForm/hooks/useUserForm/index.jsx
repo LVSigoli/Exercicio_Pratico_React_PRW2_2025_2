@@ -1,6 +1,9 @@
+// External Libraries
 import { useEffect, useState } from 'react'
+import { makeInitialOption } from '../utils'
 
 export function useUserForm({
+  products,
   currentUser,
   onConfirm,
   closePanel,
@@ -8,6 +11,9 @@ export function useUserForm({
   // States
   const [name, setName] = useState('')
   const [errors, setErrors] = useState('')
+  const [selectedOption, setSelectedOption] = useState(
+    makeInitialOption
+  )
 
   // Effect
   useEffect(() => {
@@ -55,11 +61,31 @@ export function useUserForm({
     closePanel()
   }
 
+  function parseProductToOption(products) {
+    if (!Array.isArray(products)) return []
+
+    return products.map(product => ({
+      value: product.id,
+      label: `${product.nome} R$${product.preco}`,
+    }))
+  }
+
+  function handleOptionSelection(option) {
+    if (option.value !== selectedOption.value) {
+      return setSelectedOption(option)
+    }
+
+    setSelectedOption(makeInitialOption)
+  }
+
   return {
     name,
     errors,
+    selectedOption,
+    productOptions: parseProductToOption(products),
     handleNameChange,
     handleCancelClick,
     handleConfirmClick,
+    handleOptionSelection,
   }
 }

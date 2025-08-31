@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  cursor: pointer;
+
+  padding: 1rem 0.5rem;
+}
+
+.selected {
+  background-color: #3b82f6;
+}
