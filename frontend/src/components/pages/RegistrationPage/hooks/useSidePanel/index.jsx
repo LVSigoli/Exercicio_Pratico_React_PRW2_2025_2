@@ -11,6 +11,11 @@ export function useSidePanel() {
 
   // Effects
   useEffect(() => {
+    const body = document.body
+    body.style.overflow = isVisible ? 'hidden' : 'auto'
+  }, [isVisible])
+
+  useEffect(() => {
     function handleClickOutside(event) {
       const hasSidePanelRef =
         sidePanelRef.current &&

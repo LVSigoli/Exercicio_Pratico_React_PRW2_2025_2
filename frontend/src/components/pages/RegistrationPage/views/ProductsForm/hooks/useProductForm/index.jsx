@@ -14,12 +14,18 @@ export function useProductForm({
   const [product, setProduct] = useState(makeInitialProduct)
 
   useEffect(() => {
-    if (selectedProduct)
+    if (selectedProduct) {
       setProduct({
         id: selectedProduct.id,
         name: selectedProduct.nome,
         price: selectedProduct.preco,
       })
+    }
+
+    return () => {
+      setErrors(makeInitialErros)
+      setProduct(makeInitialProduct)
+    }
   }, [selectedProduct])
 
   // Functions

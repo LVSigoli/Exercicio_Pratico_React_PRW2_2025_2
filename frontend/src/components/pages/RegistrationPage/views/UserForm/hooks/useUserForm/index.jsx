@@ -12,6 +12,11 @@ export function useUserForm({
   // Effect
   useEffect(() => {
     if (currentUser) setName(currentUser.nome)
+
+    return () => {
+      setErrors('')
+      setName('')
+    }
   }, [currentUser])
 
   // Functions
