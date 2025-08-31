@@ -59,8 +59,6 @@ export function useUserForm({
 
   function handleNameChange(value) {
     setName(value)
-
-    setErrors(checkErrors(value))
   }
 
   function handleCancelClick() {
@@ -70,12 +68,23 @@ export function useUserForm({
   }
 
   function parseProductToOption(products) {
-    if (!Array.isArray(products)) return []
+    if (
+      !Array.isArray(products) ||
+      !Array.isArray(currentUser.produtos)
+    ) {
+      return []
+    }
+    const userProductIds =
+      currentUser?.produtos?.map(p => p.id) || []
 
-    return products.map(product => ({
-      value: product.id,
-      label: `${product.nome} R$${product.preco}`,
-    }))
+    return products
+      .filter(
+        product => !userProductIds.includes(product.id)
+      )
+      .map(product => ({
+        value: product.id,
+        label: `${product.nome} R$ ${product.preco}`,
+      }))
   }
 
   function handleOptionSelection(option) {
@@ -90,7 +99,10 @@ export function useUserForm({
     name,
     errors,
     selectedOption,
-    productOptions: parseProductToOption(products),
+    productOptions: parseProductToOption(
+      products,
+      currentUser
+    ),
     handleNameChange,
     handleCancelClick,
     handleConfirmClick,

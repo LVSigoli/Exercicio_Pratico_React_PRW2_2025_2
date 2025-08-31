@@ -34,6 +34,7 @@ export const UserForm = ({
     handleConfirmClick,
     handleOptionSelection,
   } = useUserForm({
+    view,
     products,
     onConfirm,
     currentUser,
@@ -92,14 +93,14 @@ export const UserForm = ({
           </div>
         ) : null}
 
-        <Select
-          title="Adicionar produto"
-          options={productOptions}
-          selectedOption={selectedOption}
-          onOptionSelect={handleOptionSelection}
-        />
-
-        <div className={styles.spacer} />
+        {FORM_TYPES.PURCHASE === view ? (
+          <Select
+            title="Adicionar produto"
+            options={productOptions}
+            selectedOption={selectedOption}
+            onOptionSelect={handleOptionSelection}
+          />
+        ) : null}
 
         <ButtonsRow onCancel={handleCancelClick} />
       </form>

@@ -1,13 +1,16 @@
 // External Libraries
 import { useEffect, useState, useRef } from 'react'
 
+// Utils
+import { FORM_TYPES } from '../../../../../utils'
+
 export function useSidePanel() {
   // Refs
   const sidePanelRef = useRef(null)
 
   // States
-  const [view, setView] = useState('products')
   const [isVisible, setIsVisible] = useState(false)
+  const [view, setView] = useState(FORM_TYPES.PRODUCT)
 
   // Effects
   useEffect(() => {

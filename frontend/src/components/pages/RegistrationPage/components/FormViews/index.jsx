@@ -32,8 +32,8 @@ export const FormViews = ({
       case FORM_TYPES.USER:
         return (
           <UserForm
-            view={FORM_TYPES.USER}
             onClose={onClose}
+            view={FORM_TYPES.USER}
             onConfirm={handleCreateUser}
           />
         )

@@ -1,10 +1,12 @@
 // Components
-import { FORM_TYPES } from '../../../../../utils'
 import { Button } from '../../../../structure/Button'
 import { Input } from '../../../../structure/Input/index'
 
 // Hooks
 import { useProductForm } from './hooks/useProductForm'
+
+// Utils
+import { FORM_TYPES } from '../../../../../utils'
 
 // Styles
 import styles from './styles.module.css'
@@ -15,7 +17,7 @@ export const ProductsForm = ({
   onClose,
   onConfirmClick,
 }) => {
-  // Hook de produto
+  // Hook
   const {
     product,
     errors,
@@ -28,6 +30,7 @@ export const ProductsForm = ({
     closePanel: onClose,
   })
 
+  // Functions
   function handleSubmit(e) {
     e.preventDefault()
     handleConfirmClick()
