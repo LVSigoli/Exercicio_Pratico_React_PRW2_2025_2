@@ -2,6 +2,7 @@
 import styles from './styles.module.css'
 
 export const Input = ({
+  name,
   title,
   errors,
   value,
@@ -29,6 +30,7 @@ export const Input = ({
 
       <input
         type={type}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

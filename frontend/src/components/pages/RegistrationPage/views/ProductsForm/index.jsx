@@ -45,6 +45,7 @@ export const ProductsForm = ({
         <Input
           fitWidth
           required
+          name={'name'}
           value={product.name}
           errors={errors.name}
           title="Nome do Produto"
@@ -57,6 +58,7 @@ export const ProductsForm = ({
           fitWidth
           required
           type="number"
+          name={'price'}
           value={product.price}
           errors={errors.price}
           title="Preço"

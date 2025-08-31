@@ -58,9 +58,9 @@ export const UserForm = ({
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       {FORM_TYPES.PURCHASE === view ? (
-        <h2> Detalhes</h2>
+        <h2>Detalhes</h2>
       ) : (
         <h2>Cadastro de usuário</h2>
       )}
@@ -73,18 +73,14 @@ export const UserForm = ({
           fitWidth
           required
           value={name}
+          name="name"
           errors={errors}
           title="Nome do usuário"
           onChange={e => handleNameChange(e.target.value)}
         />
 
-        <Select
-          options={productOptions}
-          selectedOption={selectedOption}
-          onOptionSelect={handleOptionSelection}
-        />
-
-        {FORM_TYPES.PURCHASE === view ? (
+        {FORM_TYPES.PURCHASE === view &&
+        currentUser?.produtos?.length ? (
           <div>
             <Table
               title="Produtos"
@@ -95,6 +91,13 @@ export const UserForm = ({
             />
           </div>
         ) : null}
+
+        <Select
+          title="Adicionar produto"
+          options={productOptions}
+          selectedOption={selectedOption}
+          onOptionSelect={handleOptionSelection}
+        />
 
         <ButtonsRow onCancel={handleCancelClick} />
       </form>

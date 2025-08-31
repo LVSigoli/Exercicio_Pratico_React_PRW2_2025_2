@@ -11,6 +11,7 @@ import { Chevron } from '../../../assets/icons/Chevron'
 import styles from './styles.module.css'
 
 export const Select = ({
+  title,
   options,
   selectedOption,
   onOptionSelect,
@@ -30,6 +31,8 @@ export const Select = ({
 
   return (
     <div className={styles.container}>
+      <h3>{title}</h3>
+
       <div
         className={styles['selection-panel']}
         onClick={handlePanelClick}
