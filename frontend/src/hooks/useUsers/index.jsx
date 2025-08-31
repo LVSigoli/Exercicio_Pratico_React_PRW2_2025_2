@@ -1,6 +1,9 @@
 // External Libraries
 import { useEffect, useState } from 'react'
 
+// Utils
+import { makeInitialUser } from '../../utils'
+
 // Serivices
 import {
   createUser,
@@ -12,6 +15,8 @@ import { removePurchase } from '../../services/api/purchases'
 export function useUsers() {
   // States
   const [users, setUsers] = useState([])
+  const [selectedUser, setSelectedUser] =
+    useState(makeInitialUser)
   const [loading, setLoading] = useState(false)
 
   // Effects
@@ -54,7 +59,6 @@ export function useUsers() {
     }
   }
 
-  // Functions
   async function handleDeletePurchase(purchase) {
     try {
       setLoading(true)
@@ -87,13 +91,21 @@ export function useUsers() {
     }
   }
 
+  function handleUserSelection(user) {
+    setSelectedUser(user)
+
+    console.log('handleSelected: ', user)
+  }
+
   return {
     users,
     loading,
-    refreshUsers: fetchUsers,
+    selectedUser,
     handleDeleteUser,
     handleCreateUser,
+    handleUserSelection,
     handleDeletePurchase,
     handleDeletePurchase,
+    refreshUsers: fetchUsers,
   }
 }

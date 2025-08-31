@@ -10,9 +10,11 @@ export const DataProvider = ({ children }) => {
   const {
     users,
     loading,
+    selectedUser,
     refreshUsers,
     handleCreateUser,
     handleDeleteUser,
+    handleUserSelection,
   } = useUsers()
 
   const {
@@ -31,11 +33,13 @@ export const DataProvider = ({ children }) => {
         users,
         loading,
         products,
+        selectedUser,
         loadingProducts,
         selectedProduct,
         handleCreateUser,
         handleDeleteUser,
         handleDeleProduct,
+        handleUserSelection,
         handleUpdateProduct,
         handleCreateProduct,
         handleProductSelection,

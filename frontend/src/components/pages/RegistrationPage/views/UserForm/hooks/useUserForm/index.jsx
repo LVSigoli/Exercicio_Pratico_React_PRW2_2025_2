@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export function useUserForm({
+  currentUser,
   onConfirmClick,
   closePanel,
 }) {
   // States
   const [name, setName] = useState('')
   const [errors, setErrors] = useState('')
+
+  // Effect
+  useEffect(() => {
+    if (currentUser) setName(currentUser.nome)
+  }, [currentUser])
 
   // Functions
   function checkErrors(value) {

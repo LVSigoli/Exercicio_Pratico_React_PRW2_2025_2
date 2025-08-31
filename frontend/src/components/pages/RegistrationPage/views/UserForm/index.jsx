@@ -1,5 +1,7 @@
 // Components
-import { Button } from '../../../../structure/Button'
+import { FORM_TYPES } from '../../../../../utils'
+import { Table } from '../../../../structure/Table'
+import { ButtonsRow } from './components/ButtonsRow'
 import { Input } from '../../../../structure/Input/index'
 
 // Hooks
@@ -8,7 +10,12 @@ import { useUserForm } from './hooks/useUserForm'
 // Styles
 import styles from './styles.module.css'
 
-export const UserForm = ({ onClose, onConfirmClick }) => {
+export const UserForm = ({
+  view,
+  currentUser,
+  onClose,
+  onConfirmClick,
+}) => {
   // Hooks
   const {
     name,
@@ -17,6 +24,7 @@ export const UserForm = ({ onClose, onConfirmClick }) => {
     handleCancelClick,
     handleConfirmClick,
   } = useUserForm({
+    currentUser,
     onConfirmClick,
     closePanel: onClose,
   })
@@ -26,9 +34,12 @@ export const UserForm = ({ onClose, onConfirmClick }) => {
     handleConfirmClick()
   }
 
+  const PRODUCTS_COLUMNS = ['Nome', 'Preço', '']
+
   return (
     <div>
       <h2> Cadastro de usuário</h2>
+
       <form
         className={styles.form}
         onSubmit={e => handleSubmit(e)}
@@ -42,20 +53,19 @@ export const UserForm = ({ onClose, onConfirmClick }) => {
           onChange={e => handleNameChange(e.target.value)}
         />
 
-        <div className={styles['btn-row']}>
-          <Button
-            fitWidth
-            variant="danger"
-            label="Cancelar"
-            onClick={handleCancelClick}
-          />
-          <Button
-            fitWidth
-            type="submit"
-            variant="confirm"
-            label="Confirmar"
-          />
-        </div>
+        {FORM_TYPES.PURCHASE === view ? (
+          <div>
+            <Table
+              title="Produtos"
+              canEdit={false}
+              columns={PRODUCTS_COLUMNS}
+              content={currentUser?.produtos}
+              onDeleteClick={() => {}}
+            />
+          </div>
+        ) : null}
+
+        <ButtonsRow onCancel={handleCancelClick} />
       </form>
     </div>
   )

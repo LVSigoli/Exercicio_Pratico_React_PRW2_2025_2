@@ -9,11 +9,13 @@ export function useRegistrationManager({ openSidePanel }) {
   const {
     users,
     products,
+    selectedUser,
     selectedProduct,
     handleCreateUser,
     handleDeleteUser,
     handleDeleProduct,
     handleCreateProduct,
+    handleUserSelection,
     handleProductSelection,
   } = useDataContext()
 
@@ -25,7 +27,9 @@ export function useRegistrationManager({ openSidePanel }) {
   }
 
   function handleEditUserClick(user) {
+    console.log(user)
     openSidePanel(FORM_TYPES.PURCHASE)
+    handleUserSelection(user)
   }
 
   function handleCreateUserClick(view) {
@@ -52,6 +56,7 @@ export function useRegistrationManager({ openSidePanel }) {
   return {
     users,
     products,
+    selectedUser,
     selectedProduct,
     handleCreateUser,
     handleDeleteUser,

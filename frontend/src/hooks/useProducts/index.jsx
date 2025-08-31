@@ -17,7 +17,7 @@ export function useProducts({ refreshUsers }) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(
-    makeInitialProduct()
+    makeInitialProduct
   )
 
   // Effects

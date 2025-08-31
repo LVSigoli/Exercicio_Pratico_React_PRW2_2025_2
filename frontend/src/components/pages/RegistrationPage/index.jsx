@@ -26,14 +26,13 @@ export default function RegistrationPage() {
   const {
     users,
     products,
+    selectedUser,
     selectedProduct,
     handleDeleteUser,
     handleDeleProduct,
     handleButtonClick,
     handleEditUserClick,
-    handleCreateUserClick,
     handleEditProductClick,
-    handleCreateProductClick,
   } = useRegistrationManager({ openSidePanel })
 
   return (
@@ -48,7 +47,7 @@ export default function RegistrationPage() {
           title="Clientes"
           content={users}
           columns={USER_COLUMNS}
-          onEditClick={handleCreateUserClick}
+          onEditClick={handleEditUserClick}
           onDeleteClick={handleDeleteUser}
         />
 
@@ -68,8 +67,8 @@ export default function RegistrationPage() {
         onClose={togglePanel}
       >
         <FormViews
-          currentUser={''}
           currentView={view}
+          currentUser={selectedUser}
           currentProduct={selectedProduct}
           onClose={togglePanel}
         />

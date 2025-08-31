@@ -1,3 +1,4 @@
 export * from './fomTypes'
-export * from './makeInitinalProduct'
+export * from './makeInitialUser'
 export * from './makeInitialErrors'
+export * from './makeInitinalProduct'

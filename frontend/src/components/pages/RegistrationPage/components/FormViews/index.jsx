@@ -30,6 +30,7 @@ export const FormViews = ({
       case FORM_TYPES.USER:
         return (
           <UserForm
+            view={FORM_TYPES.USER}
             onClose={onClose}
             onConfirmClick={handleCreateUser}
           />
@@ -44,7 +45,14 @@ export const FormViews = ({
         )
 
       case FORM_TYPES.PURCHASE:
-        return <UserForm />
+        return (
+          <UserForm
+            view={FORM_TYPES.PURCHASE}
+            currentUser={currentUser}
+            onClose={onClose}
+            onConfirmClick={() => {}}
+          />
+        )
 
       case FORM_TYPES.PRODUCT_EDIT:
         return (
