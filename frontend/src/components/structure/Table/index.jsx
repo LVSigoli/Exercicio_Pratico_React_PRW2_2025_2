@@ -9,6 +9,7 @@ export const Table = ({
   columns,
   content,
   canEdit = true,
+  editLabel = 'Editar',
   onEditClick,
   onDeleteClick,
 }) => {
@@ -32,13 +33,16 @@ export const Table = ({
           {renderColumns()}
         </thead>
 
-        <tbody className={styles.tbody}>
-          <TableContent
-            content={content}
-            canEdit={canEdit}
-            onEditClick={onEditClick}
-            onDeleteClick={onDeleteClick}
-          />
+        <tbody>
+          <div className={styles.tbody}>
+            <TableContent
+              content={content}
+              canEdit={canEdit}
+              editLabel={editLabel}
+              onEditClick={onEditClick}
+              onDeleteClick={onDeleteClick}
+            />
+          </div>
         </tbody>
       </table>
     </div>

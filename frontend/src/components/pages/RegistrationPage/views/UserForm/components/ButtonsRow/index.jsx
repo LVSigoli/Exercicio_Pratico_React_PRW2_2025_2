@@ -13,6 +13,7 @@ export const ButtonsRow = ({ onCancel }) => {
         label="Cancelar"
         onClick={onCancel}
       />
+
       <Button
         fitWidth
         type="submit"

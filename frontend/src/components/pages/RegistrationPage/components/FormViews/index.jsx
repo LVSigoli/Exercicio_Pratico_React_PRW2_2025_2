@@ -39,6 +39,7 @@ export const FormViews = ({
       case FORM_TYPES.PRODUCT:
         return (
           <ProductsForm
+            view={FORM_TYPES.PRODUCT}
             onClose={onClose}
             onConfirmClick={handleCreateProduct}
           />
@@ -57,6 +58,7 @@ export const FormViews = ({
       case FORM_TYPES.PRODUCT_EDIT:
         return (
           <ProductsForm
+            view={FORM_TYPES.PRODUCT_EDIT}
             selectedProduct={currentProduct}
             onClose={onClose}
             onConfirmClick={handleUpdateProduct}

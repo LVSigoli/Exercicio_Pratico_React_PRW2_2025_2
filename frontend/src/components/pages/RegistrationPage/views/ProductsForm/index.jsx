@@ -1,4 +1,5 @@
 // Components
+import { FORM_TYPES } from '../../../../../utils'
 import { Button } from '../../../../structure/Button'
 import { Input } from '../../../../structure/Input/index'
 
@@ -9,6 +10,7 @@ import { useProductForm } from './hooks/useProductForm'
 import styles from './styles.module.css'
 
 export const ProductsForm = ({
+  view,
   selectedProduct,
   onClose,
   onConfirmClick,
@@ -33,7 +35,11 @@ export const ProductsForm = ({
 
   return (
     <>
-      <h2>Cadastro de Produto</h2>
+      {FORM_TYPES?.PRODUCT === view ? (
+        <h2>Cadastro de Produto</h2>
+      ) : (
+        <h2>Editar Produto</h2>
+      )}
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input

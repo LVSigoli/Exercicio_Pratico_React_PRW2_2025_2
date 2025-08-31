@@ -10,6 +10,7 @@ import styles from './styles.module.css'
 export const TableContent = ({
   canEdit,
   content,
+  editLabel,
   onEditClick,
   onDeleteClick,
 }) => {
@@ -50,8 +51,8 @@ export const TableContent = ({
         <td className={styles['btn-td']}>
           {canEdit ? (
             <Button
-              label="Editar"
               variant="default"
+              label={editLabel}
               onClick={e => handleEditClick(e, item)}
             />
           ) : null}

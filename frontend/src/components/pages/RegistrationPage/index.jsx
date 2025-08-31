@@ -47,6 +47,7 @@ export default function RegistrationPage() {
           title="Clientes"
           content={users}
           columns={USER_COLUMNS}
+          editLabel="Detalhar"
           onEditClick={handleEditUserClick}
           onDeleteClick={handleDeleteUser}
         />
