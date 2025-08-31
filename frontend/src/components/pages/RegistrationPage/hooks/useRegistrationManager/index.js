@@ -22,7 +22,6 @@ export function useRegistrationManager({ openSidePanel }) {
   // Functions
   function handleEditProductClick(product) {
     openSidePanel(FORM_TYPES.PRODUCT_EDIT)
-
     handleProductSelection(product)
   }
 
