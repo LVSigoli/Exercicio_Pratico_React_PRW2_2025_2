@@ -99,6 +99,8 @@ export const UserForm = ({
           onOptionSelect={handleOptionSelection}
         />
 
+        <div className={styles.spacer} />
+
         <ButtonsRow onCancel={handleCancelClick} />
       </form>
     </div>

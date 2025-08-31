@@ -10,7 +10,10 @@ import {
   createUser,
   removeUser,
 } from '../../services/api/user'
-import { removePurchase } from '../../services/api/purchases/purchases.{productId}.{userId}.delete'
+import {
+  createPurchase,
+  removePurchase,
+} from '../../services/api/purchases'
 
 export function useUsers() {
   // States
@@ -91,6 +94,26 @@ export function useUsers() {
     }
   }
 
+  async function handleCreatePurchase(product) {
+    try {
+      setLoading(true)
+
+      const purchase = {
+        userId: selectedUser.id,
+        productId: product.value,
+      }
+
+      await createPurchase(purchase)
+    } catch (error) {
+      //TODO
+      //showToast({variant = 'success', message: "Produto removido"})
+      console.log(error)
+    } finally {
+      setLoading(false)
+      await fetchUsers()
+    }
+  }
+
   function handleUserSelection(user) {
     setSelectedUser(user)
   }
@@ -102,6 +125,7 @@ export function useUsers() {
     handleDeleteUser,
     handleCreateUser,
     handleUserSelection,
+    handleCreatePurchase,
     handleDeletePurchase,
     refreshUsers: fetchUsers,
   }

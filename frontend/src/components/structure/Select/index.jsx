@@ -37,7 +37,7 @@ export const Select = ({
         className={styles['selection-panel']}
         onClick={handlePanelClick}
       >
-        {!!selectedOption ? (
+        {!!selectedOption.label ? (
           <p>{selectedOption.label}</p>
         ) : (
           <p

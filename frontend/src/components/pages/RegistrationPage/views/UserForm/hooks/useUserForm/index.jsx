@@ -1,8 +1,10 @@
 // External Libraries
 import { useEffect, useState } from 'react'
 import { makeInitialOption } from '../utils'
+import { FORM_TYPES } from '../../../../../../../utils'
 
 export function useUserForm({
+  view,
   products,
   currentUser,
   onConfirm,
@@ -22,6 +24,7 @@ export function useUserForm({
     return () => {
       setErrors('')
       setName('')
+      setSelectedOption(makeInitialOption)
     }
   }, [currentUser])
 
@@ -39,9 +42,14 @@ export function useUserForm({
 
       if (validationError) return
 
-      onConfirm(name)
+      if (view === FORM_TYPES.USER) {
+        setName('')
+        onConfirm(name)
+      } else {
+        onConfirm(selectedOption)
+        setSelectedOption(makeInitialOption)
+      }
 
-      setName('')
       setErrors('')
       closePanel()
     } catch (error) {
