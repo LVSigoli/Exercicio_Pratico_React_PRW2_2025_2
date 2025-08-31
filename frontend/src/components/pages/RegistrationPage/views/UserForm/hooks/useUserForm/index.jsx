@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 export function useUserForm({
   currentUser,
-  onConfirmClick,
+  onConfirm,
   closePanel,
 }) {
   // States
@@ -33,7 +33,7 @@ export function useUserForm({
 
       if (validationError) return
 
-      onConfirmClick(name)
+      onConfirm(name)
 
       setName('')
       setErrors('')

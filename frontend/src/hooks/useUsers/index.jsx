@@ -6,11 +6,11 @@ import { makeInitialUser } from '../../utils'
 
 // Serivices
 import {
-  createUser,
   getUsers,
+  createUser,
   removeUser,
 } from '../../services/api/user'
-import { removePurchase } from '../../services/api/purchases'
+import { removePurchase } from '../../services/api/purchases/purchases.{productId}.{userId}.delete'
 
 export function useUsers() {
   // States
@@ -63,13 +63,13 @@ export function useUsers() {
     try {
       setLoading(true)
 
-      const {} = purchase
-
-      await removePurchase(params)
+      await removePurchase(purchase)
     } catch (error) {
       //TODO
       //showToast({variant = 'error', message: "Erro ao remover usuários"})
+      console.log(error)
     } finally {
+      fetchUsers()
       setLoading(false)
       //TODO
       //showToast({variant = 'success', message: "Produto removido"})
@@ -93,8 +93,6 @@ export function useUsers() {
 
   function handleUserSelection(user) {
     setSelectedUser(user)
-
-    console.log('handleSelected: ', user)
   }
 
   return {
@@ -104,7 +102,6 @@ export function useUsers() {
     handleDeleteUser,
     handleCreateUser,
     handleUserSelection,
-    handleDeletePurchase,
     handleDeletePurchase,
     refreshUsers: fetchUsers,
   }

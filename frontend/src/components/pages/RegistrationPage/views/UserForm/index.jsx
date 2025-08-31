@@ -1,11 +1,14 @@
 // Components
-import { FORM_TYPES } from '../../../../../utils'
 import { Table } from '../../../../structure/Table'
 import { ButtonsRow } from './components/ButtonsRow'
 import { Input } from '../../../../structure/Input/index'
 
 // Hooks
 import { useUserForm } from './hooks/useUserForm'
+
+// Utils
+import { PRODUCTS_COLUMNS } from './utils'
+import { FORM_TYPES } from '../../../../../utils'
 
 // Styles
 import styles from './styles.module.css'
@@ -14,7 +17,8 @@ export const UserForm = ({
   view,
   currentUser,
   onClose,
-  onConfirmClick,
+  onDelete,
+  onConfirm,
 }) => {
   // Hooks
   const {
@@ -25,16 +29,29 @@ export const UserForm = ({
     handleConfirmClick,
   } = useUserForm({
     currentUser,
-    onConfirmClick,
+    onConfirm,
     closePanel: onClose,
   })
 
+  // Functions
   function handleSubmit(e) {
     e.preventDefault()
     handleConfirmClick()
   }
 
-  const PRODUCTS_COLUMNS = ['Nome', 'Preço', '']
+  function handleDelete(product) {
+    console.log('oi')
+    if (!onDelete) return
+
+    console.log('oiee')
+
+    const purchase = {
+      productId: product.id,
+      userId: currentUser.id,
+    }
+
+    onDelete(purchase)
+  }
 
   return (
     <div>
@@ -64,7 +81,7 @@ export const UserForm = ({
               canEdit={false}
               columns={PRODUCTS_COLUMNS}
               content={currentUser?.produtos}
-              onDeleteClick={() => {}}
+              onDeleteClick={handleDelete}
             />
           </div>
         ) : null}

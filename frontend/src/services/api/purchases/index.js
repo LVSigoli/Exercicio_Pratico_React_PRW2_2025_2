@@ -1,1 +1,1 @@
-export * from './purchases.{purchaseId}.delete'
+export * from './purchases.{productId}.{userId}.delete'

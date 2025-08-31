@@ -28,13 +28,13 @@ export const Table = ({
     <div className={styles.container}>
       <h3>{title}</h3>
 
-      <table className={styles.table}>
-        <thead className={styles.thead}>
-          {renderColumns()}
-        </thead>
+      <div className={styles['table-wrapper']}>
+        <table className={styles.table}>
+          <thead className={styles.thead}>
+            {renderColumns()}
+          </thead>
 
-        <tbody>
-          <div className={styles.tbody}>
+          <tbody>
             <TableContent
               content={content}
               canEdit={canEdit}
@@ -42,9 +42,9 @@ export const Table = ({
               onEditClick={onEditClick}
               onDeleteClick={onDeleteClick}
             />
-          </div>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

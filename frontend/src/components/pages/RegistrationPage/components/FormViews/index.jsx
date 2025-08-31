@@ -22,6 +22,7 @@ export const FormViews = ({
     handleCreateUser,
     handleCreateProduct,
     handleUpdateProduct,
+    handleDeletePurchase,
   } = useDataContext()
 
   // Functions
@@ -32,7 +33,7 @@ export const FormViews = ({
           <UserForm
             view={FORM_TYPES.USER}
             onClose={onClose}
-            onConfirmClick={handleCreateUser}
+            onConfirm={handleCreateUser}
           />
         )
 
@@ -51,7 +52,8 @@ export const FormViews = ({
             view={FORM_TYPES.PURCHASE}
             currentUser={currentUser}
             onClose={onClose}
-            onConfirmClick={() => {}}
+            onDelete={handleDeletePurchase}
+            onConfirm={() => {}}
           />
         )
 

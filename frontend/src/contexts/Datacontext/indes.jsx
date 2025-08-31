@@ -4,9 +4,11 @@ import { createContext, useContext } from 'react'
 // Hooks
 import { useUsers } from '../../hooks/useUsers'
 import { useProducts } from '../../hooks/useProducts'
+
 const DataContext = createContext()
 
 export const DataProvider = ({ children }) => {
+  // Hooks
   const {
     users,
     loading,
@@ -14,6 +16,7 @@ export const DataProvider = ({ children }) => {
     refreshUsers,
     handleCreateUser,
     handleDeleteUser,
+    handleDeletePurchase,
     handleUserSelection,
   } = useUsers()
 
@@ -42,6 +45,7 @@ export const DataProvider = ({ children }) => {
         handleUserSelection,
         handleUpdateProduct,
         handleCreateProduct,
+        handleDeletePurchase,
         handleProductSelection,
       }}
     >
