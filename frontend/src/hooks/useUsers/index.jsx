@@ -64,14 +64,10 @@ export function useUsers() {
 
       await removePurchase(purchase)
     } catch (error) {
-      //TODO
-      //showToast({variant = 'error', message: "Erro ao remover usuários"})
       console.log(error)
     } finally {
       fetchUsers()
       setLoading(false)
-      //TODO
-      //showToast({variant = 'success', message: "Produto removido"})
     }
   }
 
@@ -82,8 +78,6 @@ export function useUsers() {
       await createUser(name)
     } catch (error) {
       console.log(error)
-      //TODO
-      //showToast({variant = 'success', message: "Produto removido"})
     } finally {
       setLoading(false)
       await fetchUsers()
@@ -101,8 +95,6 @@ export function useUsers() {
 
       await createPurchase(purchase)
     } catch (error) {
-      //TODO
-      //showToast({variant = 'success', message: "Produto removido"})
       console.log(error)
     } finally {
       setLoading(false)

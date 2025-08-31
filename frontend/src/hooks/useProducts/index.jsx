@@ -35,8 +35,6 @@ export function useProducts({ refreshUsers }) {
 
       setProducts(response)
     } catch (error) {
-      //Todo
-      //showToast({variant:"error", message: Erro ao trazer produtos})
       console.log(error)
     } finally {
       setLoading(false)
@@ -52,12 +50,9 @@ export function useProducts({ refreshUsers }) {
       await fetchProducts()
       refreshUsers()
     } catch (error) {
-      //TODO
-      //showToast({variant = 'error', message: "Erro ao remover usuários"})
+      console.log(error)
     } finally {
       setLoading(false)
-      //TODO
-      //showToast({variant = 'success', message: "Produto removido"})
     }
   }
 
@@ -73,13 +68,9 @@ export function useProducts({ refreshUsers }) {
       await createProduct(payload)
     } catch (error) {
       console.error(error)
-      // TODO: exibir notificação de erro
-      // showToast({ variant: 'error', message: "Erro ao criar produto" })
     } finally {
       setLoading(false)
       await fetchProducts()
-      // TODO: exibir notificação de erro
-      // showToast({ variant: 'success', message: "Produto criado com sucesso" })
     }
   }
 
@@ -99,13 +90,10 @@ export function useProducts({ refreshUsers }) {
 
       await updateProduct(payload)
     } catch (error) {
-      //Todo
-      //showToast({variant: 'error', message:"Erro ao editar produto"})
+      console.log(error)
     } finally {
       setLoading(false)
       await fetchProducts()
-      //Todo
-      //showToast({variant: 'error', message:"Produto editado"})
     }
   }
 
