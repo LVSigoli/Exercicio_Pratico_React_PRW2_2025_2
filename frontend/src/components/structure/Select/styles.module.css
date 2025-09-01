@@ -36,3 +36,19 @@
 
   position: relative;
 }
+
+/* ===== Estilos de erro ===== */
+.errorTitle {
+  color: #ff4d4f; /* vermelho visível */
+}
+
+.errorBorder {
+  border: 1px solid #ff4d4f !important; /* borda vermelha */
+}
+
+.errorMessage {
+  color: #ff4d4f;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  align-self: flex-start;
+}

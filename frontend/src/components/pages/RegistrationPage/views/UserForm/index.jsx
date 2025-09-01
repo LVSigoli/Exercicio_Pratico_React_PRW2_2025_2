@@ -27,6 +27,7 @@ export const UserForm = ({
   const {
     name,
     errors,
+    optionErrors,
     selectedOption,
     productOptions,
     handleNameChange,
@@ -97,6 +98,7 @@ export const UserForm = ({
         {FORM_TYPES.PURCHASE === view ? (
           <Select
             title="Adicionar produto"
+            errors={optionErrors}
             options={productOptions}
             selectedOption={selectedOption}
             onOptionSelect={handleOptionSelection}

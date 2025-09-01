@@ -12,6 +12,7 @@ import styles from './styles.module.css'
 
 export const Select = ({
   title,
+  errors,
   options,
   selectedOption,
   onOptionSelect,
@@ -31,10 +32,14 @@ export const Select = ({
 
   return (
     <div className={styles.container}>
-      <h3>{title}</h3>
+      <h3 className={errors ? styles.errorTitle : ''}>
+        {title}
+      </h3>
 
       <div
-        className={styles['selection-panel']}
+        className={`${styles['selection-panel']} ${
+          errors ? styles.errorBorder : ''
+        }`}
         onClick={handlePanelClick}
       >
         {!!selectedOption.label ? (
@@ -45,7 +50,7 @@ export const Select = ({
               styles['selection-panel-placeholder']
             }
           >
-            Esolha uma opção...
+            Escolha uma opção...
           </p>
         )}
         <div
@@ -54,6 +59,10 @@ export const Select = ({
           <Chevron fill="#e5e7eb" />
         </div>
       </div>
+
+      {errors && (
+        <p className={styles.errorMessage}>{errors}</p>
+      )}
 
       {isOpen ? (
         <div className={styles['panel-wrapper']}>

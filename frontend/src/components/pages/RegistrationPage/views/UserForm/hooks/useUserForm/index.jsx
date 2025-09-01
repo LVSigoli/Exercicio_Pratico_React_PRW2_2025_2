@@ -15,6 +15,7 @@ export function useUserForm({
   // States
   const [name, setName] = useState('')
   const [errors, setErrors] = useState('')
+  const [optionErrors, setOptionErrors] = useState('')
   const [selectedOption, setSelectedOption] = useState(
     makeInitialOption
   )
@@ -37,17 +38,32 @@ export function useUserForm({
     return ''
   }
 
+  function checkOptionErros(selectedOption) {
+    if (!selectedOption?.value) return 'Campo Obrigatório'
+
+    return ''
+  }
+
   async function handleConfirmClick() {
     try {
-      const validationError = checkErrors(name)
-      setErrors(validationError)
-
-      if (validationError) return
-
       if (view === FORM_TYPES.USER) {
-        setName('')
+        const validationError = checkErrors(name)
+        setErrors(validationError)
+
+        if (validationError) return
+
         onConfirm(name)
+
+        setName('')
       } else {
+        const validationError =
+          checkOptionErros(selectedOption)
+        setOptionErrors(validationError)
+
+        console.log(validationError)
+
+        if (validationError) return
+
         onConfirm(selectedOption)
         setSelectedOption(makeInitialOption)
       }
@@ -103,6 +119,7 @@ export function useUserForm({
   return {
     name,
     errors,
+    optionErrors,
     selectedOption,
     productOptions: parseProductToOption(
       products,
