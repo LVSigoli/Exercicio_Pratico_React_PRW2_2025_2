@@ -7,8 +7,6 @@ export function parseProductToOption(
 
   if (!validArrays) return []
 
-  if (!userProducts?.length) return []
-
   const userProductIds = userProducts.map(p => p.id) || []
 
   return products
