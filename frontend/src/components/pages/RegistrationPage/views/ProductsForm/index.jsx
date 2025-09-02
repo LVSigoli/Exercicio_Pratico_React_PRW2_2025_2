@@ -1,5 +1,5 @@
 // Components
-import { Button } from '../../../../structure/Button'
+import { ButtonRow } from './components/ButtonsRow'
 import { Input } from '../../../../structure/Input/index'
 
 // Hooks
@@ -73,20 +73,7 @@ export const ProductsForm = ({
           }
         />
 
-        <div className={styles['btn-row']}>
-          <Button
-            fitWidth
-            variant="danger"
-            label="Cancelar"
-            onClick={handleCancelClick}
-          />
-          <Button
-            fitWidth
-            type="submit"
-            variant="confirm"
-            label="Confirmar"
-          />
-        </div>
+        <ButtonRow onCancel={handleCancelClick} />
       </form>
     </>
   )

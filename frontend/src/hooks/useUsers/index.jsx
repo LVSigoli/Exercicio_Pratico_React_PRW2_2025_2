@@ -27,6 +27,16 @@ export function useUsers() {
     fetchUsers()
   }, [])
 
+  useEffect(() => {
+    if (!selectedUser?.id) return
+
+    const updatedUser = users.find(
+      user => user?.id === selectedUser?.id
+    )
+    if (!updatedUser) return
+    setSelectedUser(updatedUser)
+  }, [users, selectedUser?.id])
+
   //Functions
   async function fetchUsers() {
     try {

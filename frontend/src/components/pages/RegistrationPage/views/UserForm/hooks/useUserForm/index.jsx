@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 // Utils
 import { makeInitialOption } from '../utils'
+import { parseProductToOption } from './utils'
 import { FORM_TYPES } from '../../../../../../../utils'
 
 export function useUserForm({
@@ -46,33 +47,39 @@ export function useUserForm({
 
   async function handleConfirmClick() {
     try {
-      if (view === FORM_TYPES.USER) {
-        const validationError = checkErrors(name)
-        setErrors(validationError)
+      const success =
+        view === FORM_TYPES.USER
+          ? createUser()
+          : updatePurchases()
 
-        if (validationError) return
-
-        onConfirm(name)
-
-        setName('')
-      } else {
-        const validationError =
-          checkOptionErros(selectedOption)
-        setOptionErrors(validationError)
-
-        console.log(validationError)
-
-        if (validationError) return
-
-        onConfirm(selectedOption)
-        setSelectedOption(makeInitialOption)
-      }
+      if (!success) return
 
       setErrors('')
-      closePanel()
     } catch (error) {
       console.error(error)
     }
+  }
+
+  function createUser() {
+    const validationError = checkErrors(name)
+    setErrors(validationError)
+
+    if (validationError) return false
+
+    onConfirm(name)
+
+    setName('')
+    closePanel()
+  }
+
+  function updatePurchases() {
+    const validationError = checkOptionErros(selectedOption)
+    setOptionErrors(validationError)
+
+    if (validationError) return false
+
+    onConfirm(selectedOption)
+    setSelectedOption(makeInitialOption)
   }
 
   function handleNameChange(value) {
@@ -83,29 +90,6 @@ export function useUserForm({
     setName('')
     setErrors('')
     closePanel()
-  }
-
-  function parseProductToOption(products) {
-    if (
-      !Array.isArray(products) ||
-      !Array.isArray(currentUser?.produtos)
-    ) {
-      return []
-    }
-
-    if (currentUser?.produtos) {
-      const userProductIds =
-        currentUser?.produtos?.map(p => p.id) || []
-
-      return products
-        .filter(
-          product => !userProductIds.includes(product.id)
-        )
-        .map(product => ({
-          value: product.id,
-          label: `${product.nome} R$ ${product.preco}`,
-        }))
-    }
   }
 
   function handleOptionSelection(option) {
@@ -123,7 +107,7 @@ export function useUserForm({
     selectedOption,
     productOptions: parseProductToOption(
       products,
-      currentUser
+      currentUser?.produtos
     ),
     handleNameChange,
     handleCancelClick,

@@ -14,6 +14,7 @@ export const Select = ({
   title,
   errors,
   options,
+  required = false,
   selectedOption,
   onOptionSelect,
 }) => {
@@ -32,9 +33,19 @@ export const Select = ({
 
   return (
     <div className={styles.container}>
-      <h3 className={errors ? styles.errorTitle : ''}>
-        {title}
-      </h3>
+      <div className={styles['header-wrapper']}>
+        <p
+          className={`${styles['select-name']} ${
+            errors ? styles.errorTitle : ''
+          }`}
+        >
+          {title}
+        </p>
+
+        {required ? (
+          <span className={styles.required}>*</span>
+        ) : null}
+      </div>
 
       <div
         className={`${styles['selection-panel']} ${

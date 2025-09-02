@@ -97,6 +97,7 @@ export const UserForm = ({
 
         {FORM_TYPES.PURCHASE === view ? (
           <Select
+            required
             title="Adicionar produto"
             errors={optionErrors}
             options={productOptions}
