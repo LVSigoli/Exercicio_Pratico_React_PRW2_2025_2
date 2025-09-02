@@ -1,3 +1,9 @@
+// components
+import { Button } from '../../../../../../structure/Button'
+
+// Styles
+import styles from './styles.module.css'
+
 export const ButtonRow = ({ onCancel }) => {
   return (
     <div className={styles.container}>
